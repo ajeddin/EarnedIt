@@ -52,19 +52,18 @@ struct WavePage: View {
                 ZStack(alignment: .top) {
                     Wave(yOffset: change ? 0.6 : -0.7)
                     
-                        . fill(Color("Primary"))
+                        . fill(Color("PrimaryColor"))
 //                        . shadow (radius: 4)
 
                         . frame (height: height1) // 180
                         .animation (Animation.easeInOut(duration: duration1).repeatForever(autoreverses: true))
                     Wave(yOffset: change ? -0.4 : -0.7)
-                        . fill (Color("Primary"))
+                        . fill (Color("PrimaryColor"))
                         . opacity (0.38)
                         . frame (height: height2) //150
 //                        .shadow (radius: 4)
                         
-                        . animation (Animation.easeInOut(duration: duration2).repeatForever (autoreverses:
-                                                                                        true) )
+                        . animation (Animation.easeInOut(duration: duration2).repeatForever (autoreverses:true) )
                 }            .ignoresSafeArea(.all)
 
                 Spacer ()
