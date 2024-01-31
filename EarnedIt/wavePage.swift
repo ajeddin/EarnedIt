@@ -61,8 +61,8 @@ struct WavePage: View {
     //                        . shadow (radius: 4)
 
                             . frame (height: height1)
-                        .overlay(alignment: .bottomLeading){Text("\(headerText)").padding([.leading,.bottom],28)        .font(Font.system(size: 32)).bold()}
-                        .overlay(alignment: .bottomTrailing){Text("\(points)").padding([.trailing,.bottom],28)        .font(Font.system(size: 23)).bold()}
+                            .overlay(alignment: .bottomLeading){Text("\(headerText)").padding([.leading,.bottom],28)        .font(Font.system(size: 32)).bold().foregroundColor(Color("ForegroundColor"))}
+                        .overlay(alignment: .bottomTrailing){Text("\(points)").padding([.trailing,.bottom],28)        .font(Font.system(size: 23)).bold().foregroundColor(Color("ForegroundColor"))}
                         .animation (Animation.easeInOut(duration: duration1).repeatForever(autoreverses: true))
                     }else{
                         Wave(yOffset: change ? 0.6 : -0.7)

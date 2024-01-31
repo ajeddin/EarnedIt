@@ -48,13 +48,14 @@ struct OnboardingView: View {
                    Text(data.primaryText)
                        .font(.title2)
                        .bold()
-                       .foregroundColor(Color(red: 41 / 255, green: 52 / 255, blue: 73 / 255))
+//                       .foregroundColor(Color(red: 41 / 255, green: 52 / 255, blue: 73 / 255))
+//                       .foregroundStyle(Color("primaryApp"))
 
                    Text(data.secondaryText)
                        .font(.headline)
                        .multilineTextAlignment(.center)
                        .frame(maxWidth: 250)
-                       .foregroundColor(Color.black)
+//                       .foregroundColor(Color.black)
                      
 
                    Spacer()

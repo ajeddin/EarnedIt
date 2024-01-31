@@ -20,13 +20,6 @@ struct ContentView: View {
                 //                .environmentObject(data)
                     .tabItem {
                         Label("Wishlist", systemImage: "heart")}
-
-                //            SplashScreen()
-                //                .tabItem {
-                //                    Label("Other Services", systemImage: "star")
-                //
-                //
-                //                }
                 toDoList()
                     .tabItem {
                         Label("To-Do List", systemImage: "checklist")}

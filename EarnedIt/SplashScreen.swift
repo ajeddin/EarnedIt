@@ -17,9 +17,12 @@ struct SplashScreen: View {
             }else{
                 Rectangle()
                     .foregroundColor(Color("PrimaryApp")).ignoresSafeArea()
-                
+//                    .overlay(Image("EarnedIt") .resizable().scaledToFit())
+
                 WavePage(height1: 140, height2: 200,isOn: true, duration1: 1,duration2: 1,showingText: false , headerText: "",points: 0)
                     .padding(.top,350)
+                Image("EarnedIt") .resizable().scaledToFit().frame(width: 300,height: 180).padding(.bottom,200)
+
                 
                 Spacer()
             }
