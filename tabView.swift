@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  tabView.swift
 //  EarnedIt
 //
 //  Created by Abdulaziz Jamaleddin on 1/30/24.
@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct tabView: View {
     var body: some View {
-        
         TabView {
             toDoList()
                 .tabItem {
@@ -18,18 +17,17 @@ struct ContentView: View {
 //                .environmentObject(data)
                 .tabItem {
                     Label("Wishlist", systemImage: "checkmark")}
-//            SplashScreen()
-//                .tabItem {
-//                    Label("Other Services", systemImage: "star")
-//                        
-//                    
-//                }
+            earnedRewards()
+                .tabItem {
+                    Label("Other Services", systemImage: "star")
+                        
+                    
+                }
              
           
-        }
-    }
+        }    }
 }
 
 #Preview {
-    ContentView()
+    tabView()
 }
