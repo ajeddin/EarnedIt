@@ -23,6 +23,8 @@ struct OnboardingView: View {
                     Button("Skip",  action: {
                         
                     })
+                    
+                    .foregroundColor(.blue)
                     .edgesIgnoringSafeArea(.top)
                     .padding(.trailing, 40)
                     .padding(.top, 1)
