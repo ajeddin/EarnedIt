@@ -34,6 +34,7 @@ struct Wave: Shape {
 }
 
 
+
 struct WavePage: View {
     
     var height1: CGFloat;
@@ -44,46 +45,134 @@ struct WavePage: View {
     var showingText: Bool;
     var headerText: String;
     var points: Int;
-
+    @Binding var isPresented :Bool;
+    var cond = false;
     @State private var change = false;
+    
+    
+    
+    
+    
+    
     var body: some View{
         ZStack {
             Color("BackgroundColor")
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 ZStack(alignment: .top) {
-                  // 180
-            
+                    // 180
+                    
                     if (showingText){
                         Wave(yOffset: change ? 0.6 : -0.7)
-                            
+                        
                             . fill(Color("PrimaryApp"))
-    //                        . shadow (radius: 4)
-
+                        //                        . shadow (radius: 4)
+                        
                             . frame (height: height1)
-                            .overlay(alignment: .bottomLeading){Text("\(headerText)").padding([.leading,.bottom],28)        .font(Font.system(size: 32)).bold().foregroundColor(Color("ForegroundColor"))}
-                        .overlay(alignment: .bottomTrailing){Text("\(points)").padding([.trailing,.bottom],28)        .font(Font.system(size: 23)).bold().foregroundColor(Color("ForegroundColor"))}
-                        .animation (Animation.easeInOut(duration: duration1).repeatForever(autoreverses: true))
-                    }else{
+//                            .overlay(alignment: .bottomLeading){Text("\(headerText)").padding([.leading,.bottom],28)        .font(Font.system(size: 32)).bold().foregroundColor(Color("ForegroundColor"))}
+//                            .overlay(alignment: .bottomLeading){Text("Points: \(points)").padding([.leading,.top],30)        .font(Font.system(size: 18)).bold().foregroundColor(Color("ForegroundColor"))}
+                            .animation (Animation.easeInOut(duration: duration1).repeatForever(autoreverses: true))
+                        
+                        
+                        
+                        
+                        Wave(yOffset: change ? -0.4 : -0.7)
+                            . fill (Color("PrimaryApp"))
+                            . opacity (0.38)
+                            . frame (height: height2) //150
+                        //                        .shadow (radius: 4)
+                        
+                            . animation (Animation.easeInOut(duration: duration2).repeatForever (autoreverses:true) )
+                        
+                            .overlay(alignment: .topLeading){
+                                HStack{
+                                    VStack{
+                                        
+                                        Text("\(headerText)")
+                                        //                                        .padding([.leading,.top],28)
+                                            .font(Font.system(size: 35)).bold().foregroundColor(Color("ForegroundColor"))
+                                        
+                                        Text("Points: \(points)")
+//                                                                                .padding(.leading,30)
+                                        //                                        .padding(.top,50)
+                                            .font(Font.system(size: 18)).bold().foregroundColor(Color("ForegroundColor"))
+                                    }.padding(.leading,30)
+                                    Spacer()
+                                    
+                                    Button(action: {isPresented=true}) {
+                                    Image(systemName: "plus")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 19, height: 19)
+                                        .foregroundColor(Color("AccentColor"))
+                                        .padding(15)
+                                        .background(Color.white)
+                                        .clipShape(Circle())
+                                }
+                                .padding([.top,.trailing],20)
+//                                .padding(.trailing,5)
+                                    
+                                }.padding(.top,50)
+                                
+                            }
+//
+//                        
+//                            .overlay(alignment: .topLeading){Text("Points: \(points)")
+//                                .padding(.leading,30)
+//                                .padding(.top,50)
+//                                .font(Font.system(size: 18)).bold().foregroundColor(Color("ForegroundColor"))}
+//                        
+                        
+//                        
+//                            .overlay(alignment:.topTrailing){
+////                                Button(action: {isPresented=true}) {
+//                                    Button(action: {}) {
+//
+//                                    Image(systemName: "plus")
+//                                        .resizable()
+//                                        .aspectRatio(contentMode: .fit)
+//                                        .frame(width: 19, height: 19)
+//                                        .foregroundColor(Color("AccentColor"))
+//                                        .padding(15)
+//                                        .background(Color.white)
+//                                        .clipShape(Circle())
+//                                }
+//                                .padding([.top,.trailing],23)
+//                                .padding(.trailing,5)
+//                                
+//                            }
+//                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                    else{
                         Wave(yOffset: change ? 0.6 : -0.7)
-                            
+                        
                             . fill(Color("PrimaryApp"))
-    //                        . shadow (radius: 4)
-
+                        //                        . shadow (radius: 4)
+                        
                             . frame (height: height1)
                             .animation (Animation.easeInOut(duration: duration1).repeatForever(autoreverses: true))
+                        
+                        
+                        
+                        
+                        Wave(yOffset: change ? -0.4 : -0.7)
+                            . fill (Color("PrimaryApp"))
+                            . opacity (0.38)
+                            . frame (height: height2) //150
+                        //                        .shadow (radius: 4)
+                        
+                            . animation (Animation.easeInOut(duration: duration2).repeatForever (autoreverses:true) )
+                        
                     }
+                    
+                    
+                }       .ignoresSafeArea(.all)
 
-
-                        
-                    Wave(yOffset: change ? -0.4 : -0.7)
-                        . fill (Color("PrimaryApp"))
-                        . opacity (0.38)
-                        . frame (height: height2) //150
-//                        .shadow (radius: 4)
-                        
-                        . animation (Animation.easeInOut(duration: duration2).repeatForever (autoreverses:true) )
-                }            .ignoresSafeArea(.all)
 
                 Spacer ()
                
@@ -97,7 +186,7 @@ struct WavePage: View {
         }}}
         
         
-        
-#Preview {
-    WavePage(height1: 140 , height2: 200, isOn: false,duration1: 8,duration2: 7,showingText: false,headerText: "Tp",points: 30)
-}
+//        
+//#Preview {
+//    WavePage(height1: 180 , height2: 210, isOn: false,duration1: 8,duration2: 7,showingText: true,headerText: "To-Do List",points: 30)
+//}

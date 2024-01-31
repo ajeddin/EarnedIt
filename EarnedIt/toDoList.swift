@@ -8,15 +8,33 @@
 import SwiftUI
 
 struct toDoList: View {
-    var body: some View {
-        WavePage(height1: 140 , height2: 200, isOn: true,duration1: 20,duration2: 25, showingText: true, headerText: "To-Do List",points: 30)
+        @State var presentedSheet : Bool = false;
         
-//        Text("hello")
-        
-
+        var body: some View {
+            ZStack{
+                VStack{
+                    WavePage(height1: 160 , height2: 190, isOn: true,duration1: 20,duration2: 25, showingText: true, headerText: "To-Do List",points: 30,isPresented:$presentedSheet)
+                }}.sheet(isPresented: $presentedSheet, content: {
+                    toDoListSheet()
+            })
+            
+          
+            
+            
+            
+            
+        }
     }
-}
+        
+    struct toDoListSheet: View{
+        var body: some View{
+            
+            Text("Hello TODO")
+        }
+    }
+            
 
-#Preview {
-    toDoList()
-}
+
+    #Preview {
+        toDoList()
+    }
