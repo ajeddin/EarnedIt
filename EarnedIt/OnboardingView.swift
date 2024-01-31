@@ -103,3 +103,8 @@ struct OnboardingView_Previews: PreviewProvider {
 
 
 
+
+//
+//#Preview {
+//    OnboardingView(data: )
+//}
