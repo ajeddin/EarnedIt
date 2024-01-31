@@ -13,9 +13,9 @@ struct onboarding: View {
     var body: some View {
         TabView(selection: $currentTab,
                 content:  {
-            ForEach(OnboardingData.list) { viewData in
-                OnboardingView(data: viewData)
-                    .tag(viewData.id)
+            ForEach(OnboardingData.list.indices) { index in
+                OnboardingView(data: OnboardingData.list[index], currentPageIndex: $currentTab)
+                    .tag(index)
             }})
         .tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
