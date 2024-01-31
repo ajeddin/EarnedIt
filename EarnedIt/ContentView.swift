@@ -15,21 +15,29 @@ struct ContentView: View {
             onboarding()
         }else{
             TabView {
-                toDoList()
-                    .tabItem {
-                        Label("To-Do List", systemImage: "cart")}
+            
                 wishList()
                 //                .environmentObject(data)
                     .tabItem {
-                        Label("Wishlist", systemImage: "checkmark")}
+                        Label("Wishlist", systemImage: "heart")}
+
                 //            SplashScreen()
                 //                .tabItem {
                 //                    Label("Other Services", systemImage: "star")
                 //
                 //
                 //                }
-                
-                
+                toDoList()
+                    .tabItem {
+                        Label("To-Do List", systemImage: "checklist")}
+                    .foregroundColor(.blue)
+
+                earnedRewards()
+                    .tabItem {
+                        Label("Earned Items", systemImage: "checkmark")}
+                    .foregroundColor(.blue)
+
+
             }
         }}
 }
