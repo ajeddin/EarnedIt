@@ -18,7 +18,7 @@ struct SplashScreen: View {
                 Rectangle()
                     .foregroundColor(Color("PrimaryApp")).ignoresSafeArea()
                 
-                WavePage(height1: 140, height2: 200,isOn: true, duration1: 1,duration2: 1)
+                WavePage(height1: 140, height2: 200,isOn: true, duration1: 1,duration2: 1,showingText: false , headerText: "",points: 0)
                     .padding(.top,350)
                 
                 Spacer()
@@ -40,7 +40,7 @@ struct SplashScreen: View {
     }
 }
 
-
+//
 //#Preview {
 //    SplashScreen(isActive: bindin)
 //}
