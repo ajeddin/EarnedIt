@@ -18,6 +18,9 @@
 		210E8D142B69BDB1000D5549 /* wishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E8D132B69BDB1000D5549 /* wishList.swift */; };
 		210E8D162B69BDF2000D5549 /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E8D152B69BDF2000D5549 /* tabView.swift */; };
 		210E8D182B69FC9E000D5549 /* viewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E8D172B69FC9E000D5549 /* viewController.swift */; };
+		C124358F2B6931AA007588A1 /* onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C124358E2B6931AA007588A1 /* onboarding.swift */; };
+		C12435912B6934C3007588A1 /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12435902B6934C3007588A1 /* OnboardingData.swift */; };
+		C12435932B69357D007588A1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12435922B69357D007588A1 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,7 @@
 		210E8CFF2B692F39000D5549 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		210E8D012B692F3A000D5549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		210E8D042B692F3A000D5549 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+
 		210E8D0B2B6938BD000D5549 /* wavePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wavePage.swift; sourceTree = "<group>"; };
 		210E8D0D2B695BBB000D5549 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		210E8D0F2B69BD67000D5549 /* toDoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDoList.swift; sourceTree = "<group>"; };
@@ -33,6 +37,9 @@
 		210E8D132B69BDB1000D5549 /* wishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wishList.swift; sourceTree = "<group>"; };
 		210E8D152B69BDF2000D5549 /* tabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabView.swift; sourceTree = "<group>"; };
 		210E8D172B69FC9E000D5549 /* viewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
+		C124358E2B6931AA007588A1 /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
+		C12435902B6934C3007588A1 /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
+		C12435922B69357D007588A1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,11 +76,17 @@
 			children = (
 				210E8CFD2B692F39000D5549 /* EarnedItApp.swift */,
 				210E8CFF2B692F39000D5549 /* ContentView.swift */,
+
 				210E8D0D2B695BBB000D5549 /* SplashScreen.swift */,
 				210E8D0B2B6938BD000D5549 /* wavePage.swift */,
 				210E8D0F2B69BD67000D5549 /* toDoList.swift */,
 				210E8D112B69BD78000D5549 /* earnedRewards.swift */,
 				210E8D132B69BDB1000D5549 /* wishList.swift */,
+
+				C124358E2B6931AA007588A1 /* onboarding.swift */,
+				C12435902B6934C3007588A1 /* OnboardingData.swift */,
+				C12435922B69357D007588A1 /* OnboardingView.swift */,
+
 				210E8D012B692F3A000D5549 /* Assets.xcassets */,
 				210E8D032B692F3A000D5549 /* Preview Content */,
 			);
@@ -158,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				210E8D142B69BDB1000D5549 /* wishList.swift in Sources */,
 				210E8D0E2B695BBB000D5549 /* SplashScreen.swift in Sources */,
 				210E8D162B69BDF2000D5549 /* tabView.swift in Sources */,
@@ -165,7 +179,11 @@
 				210E8D102B69BD67000D5549 /* toDoList.swift in Sources */,
 				210E8D0C2B6938BD000D5549 /* wavePage.swift in Sources */,
 				210E8D122B69BD78000D5549 /* earnedRewards.swift in Sources */,
+
+				C12435912B6934C3007588A1 /* OnboardingData.swift in Sources */,
 				210E8D002B692F39000D5549 /* ContentView.swift in Sources */,
+				C124358F2B6931AA007588A1 /* onboarding.swift in Sources */,
+				C12435932B69357D007588A1 /* OnboardingView.swift in Sources */,
 				210E8CFE2B692F39000D5549 /* EarnedItApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
