@@ -9,8 +9,7 @@ import SwiftUI
 
 struct wishList: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        WavePage(height1: 140 , height2: 200, isOn: true,duration1: 20,duration2: 25, showingText: true, headerText: "Wishlist",points: 30)    }
 }
 
 #Preview {
