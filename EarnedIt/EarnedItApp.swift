@@ -11,7 +11,7 @@ import SwiftUI
 struct EarnedItApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            viewController()
         }
     }
 }
