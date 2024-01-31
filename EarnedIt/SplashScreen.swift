@@ -16,7 +16,7 @@ struct SplashScreen: View {
                 toDoList()
             }else{
                 Rectangle()
-                    .foregroundColor(Color("Primary")).ignoresSafeArea()
+                    .foregroundColor(Color("PrimaryApp")).ignoresSafeArea()
                 
                 WavePage(height1: 140, height2: 200,isOn: true, duration1: 1,duration2: 1)
                     .padding(.top,350)
@@ -31,7 +31,7 @@ struct SplashScreen: View {
             //                }
             //            }
         }.onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 withAnimation {
                     self.isActive = true
                 }
