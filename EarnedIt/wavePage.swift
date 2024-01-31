@@ -41,7 +41,9 @@ struct WavePage: View {
     var isOn : Bool
     var duration1 : Double;
     var duration2 : Double;
-
+    var showingText: Bool;
+    var headerText: String;
+    var points: Int;
 
     @State private var change = false;
     var body: some View{
@@ -50,13 +52,30 @@ struct WavePage: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 ZStack(alignment: .top) {
-                    Wave(yOffset: change ? 0.6 : -0.7)
-                    
-                        . fill(Color("PrimaryApp"))
-//                        . shadow (radius: 4)
+                  // 180
+            
+                    if (showingText){
+                        Wave(yOffset: change ? 0.6 : -0.7)
+                            
+                            . fill(Color("PrimaryApp"))
+    //                        . shadow (radius: 4)
 
-                        . frame (height: height1) // 180
+                            . frame (height: height1)
+                        .overlay(alignment: .bottomLeading){Text("\(headerText)").padding([.leading,.bottom],28)        .font(Font.system(size: 32)).bold()}
+                        .overlay(alignment: .bottomTrailing){Text("\(points)").padding([.trailing,.bottom],28)        .font(Font.system(size: 23)).bold()}
                         .animation (Animation.easeInOut(duration: duration1).repeatForever(autoreverses: true))
+                    }else{
+                        Wave(yOffset: change ? 0.6 : -0.7)
+                            
+                            . fill(Color("PrimaryApp"))
+    //                        . shadow (radius: 4)
+
+                            . frame (height: height1)
+                            .animation (Animation.easeInOut(duration: duration1).repeatForever(autoreverses: true))
+                    }
+
+
+                        
                     Wave(yOffset: change ? -0.4 : -0.7)
                         . fill (Color("PrimaryApp"))
                         . opacity (0.38)
@@ -80,5 +99,5 @@ struct WavePage: View {
         
         
 #Preview {
-    WavePage(height1: 140 , height2: 200, isOn: true,duration1: 8,duration2: 7)
+    WavePage(height1: 140 , height2: 200, isOn: false,duration1: 8,duration2: 7,showingText: false,headerText: "Tp",points: 30)
 }
