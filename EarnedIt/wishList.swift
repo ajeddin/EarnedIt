@@ -12,7 +12,7 @@ struct wishList: View {
     var body: some View {
         ZStack{
             VStack{
-                WavePage(height1: 160 , height2: 190, isOn: true,duration1: 20,duration2: 25, showingText: true, headerText: "Wishlist",points: 30,isPresented:$presentedSheet)
+                WavePage(height1: 160 , height2: 190, isOn: false,duration1: 20,duration2: 25, showingText: true, headerText: "Wishlist",points: 30,isPresented:$presentedSheet)
             }}.sheet(isPresented: $presentedSheet, content: {
             wishListSheet()
         })
@@ -26,9 +26,13 @@ struct wishList: View {
 }
     
 struct wishListSheet: View{
+    @State var link: String = "";
     var body: some View{
         
-        Text("Hello")
+        TextField("Hello", text: $link)
+
+
+            .presentationDetents([.medium,.large])
     }
 }
         

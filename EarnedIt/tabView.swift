@@ -14,13 +14,12 @@ struct tabView: View {
                 .tabItem {
                     Label("To-Do List", systemImage: "cart")}
             wishList()
-//                .environmentObject(data)
                 .tabItem {
                     Label("Wishlist", systemImage: "checkmark")}
             earnedRewards()
                 .tabItem {
                     Label("Other Services", systemImage: "star")
-                        
+                    
                     
                 }
              
