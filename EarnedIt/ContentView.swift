@@ -27,7 +27,7 @@ struct ContentView: View {
 
                 earnedRewards()
                     .tabItem {
-                        Label("Earned Items", systemImage: "checkmark")}
+                        Label("Earned Items", systemImage: "checkmark.circle.fill")}
                     .foregroundColor(.blue)
 
 
