@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-//struct viewController: View {
-//    var body: some View {
-//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-//    }
-//}
-
 struct viewController: View {
     @State private var isActive = false
     var body: some View {
