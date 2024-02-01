@@ -6,15 +6,30 @@
 //
 
 import SwiftUI
+import SwiftData
 struct wishList: View {
+    @Environment(\.modelContext) private var context
+    @Query private var products: [Products];
     @State var presentedSheet : Bool = false;
-    
+//    @State var arrayProducts: Product?;
+//    @AppStorage("arrayProducts")
+
     var body: some View {
         ZStack{
             VStack{
                 WavePage(height1: 160 , height2: 190, isOn: true,duration1: 25,duration2: 30, showingText: true, headerText: "Wishlist",points: 30,isPresented:$presentedSheet)
+                
+//                Text("\(arrayProducts[0].rating)")
+                List{
+                    ForEach(products) { product in
+                                            Text(product.productName!)
+                                        }
+                }
+                
+                
+                
             }}.sheet(isPresented: $presentedSheet, content: {
-            wishListSheet()
+                wishListSheet()
         })
         
       
@@ -26,6 +41,7 @@ struct wishList: View {
 }
     
 struct wishListSheet: View{
+    @Environment(\.modelContext) private var context
     @State var link: String = "";
     @State var photo: String = "";
     @State var itemName: String = "";
@@ -35,6 +51,7 @@ struct wishListSheet: View{
     @State var isValidLink : Bool = false
 
     var body: some View{
+        
         VStack {
             Picker("What is your favorite color?", selection: $amazonBool) {
                 Text("Amazon Product").tag(1)
@@ -63,9 +80,12 @@ struct wishListSheet: View{
                             getProductImage(url: URL(string:response)!) { result in
                                 switch result {
                                 case .success(let response):
-                                    photo = response.0
-                                    price = response.1
-                                    itemName = response.2
+                                    let product = Products(imageURL: response.0, productName: response.2, price: 90.0, rating: response.1)
+                                    context.insert(product)
+//                                   arrayProducts.append(Products(imageURL: photo, productName: itemName, price: 90.0, rating: price))
+//                                    photo = response.0
+//                                    price = response.1
+//                                    itemName = response.2
                                     isValidLink = true
 
                                 case .failure(let error):

@@ -39,6 +39,8 @@
 		210E8D132B69BDB1000D5549 /* wishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wishList.swift; sourceTree = "<group>"; };
 		210E8D152B69BDF2000D5549 /* tabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabView.swift; sourceTree = "<group>"; };
 		210E8D172B69FC9E000D5549 /* viewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
+		214246582B6BE3BD00C8CB0B /* EarnedIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EarnedIt.entitlements; sourceTree = "<group>"; };
+		214246592B6BE3FD00C8CB0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		21D748B92B6B508500E9A4EA /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 		21D748BE2B6B574000E9A4EA /* modals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modals.swift; sourceTree = "<group>"; };
 		C124358E2B6931AA007588A1 /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
@@ -77,6 +79,8 @@
 		210E8CFC2B692F39000D5549 /* EarnedIt */ = {
 			isa = PBXGroup;
 			children = (
+				214246592B6BE3FD00C8CB0B /* Info.plist */,
+				214246582B6BE3BD00C8CB0B /* EarnedIt.entitlements */,
 				21D748B92B6B508500E9A4EA /* functions.swift */,
 				210E8D172B69FC9E000D5549 /* viewController.swift */,
 				210E8D152B69BDF2000D5549 /* tabView.swift */,
@@ -325,12 +329,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EarnedIt/EarnedIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnedIt/Preview Content\"";
 				DEVELOPMENT_TEAM = 42NWXG687M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EarnedIt/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -354,12 +360,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EarnedIt/EarnedIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnedIt/Preview Content\"";
 				DEVELOPMENT_TEAM = 42NWXG687M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EarnedIt/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
