@@ -19,6 +19,7 @@ func getProductImage(url: URL, completion: @escaping (Result<(String,String,Stri
             return
         }
         do {
+            print(url)
             let doc: Document = try SwiftSoup.parseBodyFragment(html)
             let container: Element = try doc.getElementById("dp-container")!
             let titleElement: Element = try container.getElementById("productTitle")!
