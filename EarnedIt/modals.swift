@@ -33,7 +33,7 @@ class Products : Identifiable{
 
 
 @Model
-class Test : Identifiable{
+class Tasks : Identifiable{
 //    var id:String = " ";
 //    var imageURL:String = " ";
 //    var productName:String = " ";

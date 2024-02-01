@@ -25,15 +25,72 @@ struct toDoList: View {
                         Section {
                             HStack{
                                 TextField("Add Task", text: $newTask)
-                                Button (action: {} ) {
-                                    Label("", systemImage: "circle")
-                                }
                             }
                         }
-                        Section {
-                            ForEach(addedTask, id:\.self) {task in Text(task)}
+                        Section(header: Text("Simple").foregroundColor(.green).bold().font(.system(size: 16))) {
+                            ForEach(addedTask, id:\.self) {task in
+                                HStack{
+                                    Text(task)
+                                    Spacer()
+                                    Button (action: {} ) {
+                                        Label("", systemImage: "star")
+                                    }
+
+                                    Button (action: {} ) {
+                                        Label("", systemImage: "circle")
+                                    }
+                                    
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        Section(header: Text("Moderate").foregroundColor(.yellow).bold().font(.system(size: 16))) {
+
+                            ForEach(addedTask, id:\.self) {task in
+                                HStack{
+                                    Text(task)
+                                    Spacer()
+                                    Button (action: {} ) {
+                                        Label("", systemImage: "star")
+                                    }
+                                    Button (action: {} ) {
+                                        Label("", systemImage: "circle")
+                                    }
+                                    
+                                                                        
+                                }
+                                
+                            }
+                            
+                        }
+                        Section (header: Text("Difficult").foregroundColor(.red).bold().font(.system(size: 16))){
+
+                            ForEach(addedTask, id:\.self) {task in
+                                HStack{
+                                    
+                                    Text(task)
+                                    Spacer()
+                                    
+                                    Button (action: {} ) {
+                                        Label("", systemImage: "star")
+                                    }
+
+
+                                    Button (action: {} ) {
+                                        Label("", systemImage: "circle")
+                                    }
+                                    
+                                    
+                                }
+                                
+                            }
+                            
                         }
                     }
+                    .scrollContentBackground(.hidden)
+
                     .onSubmit(addNewTask)
 
                 }
