@@ -11,6 +11,8 @@ struct wishList: View {
     @Environment(\.modelContext) private var context
     @Query private var products: [Products];
     @State var presentedSheet : Bool = false;
+    @State var pointss : Int = 2;
+
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
 
 //    @State var arrayProducts: Product?;
@@ -18,7 +20,7 @@ struct wishList: View {
 
     var body: some View {
         ZStack{
-            WavePage(height1: 160 , height2: 190, isOn: !ReduceMotion,duration1: 25,duration2: 30, showingText: true, headerText: "Wishlist",points: 30,isPresented:$presentedSheet)
+            WavePage(height1: 175 , height2: 210, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Wishlist",points: pointss,isPresented:$presentedSheet)
             
             VStack{
                 List{
@@ -66,6 +68,7 @@ struct wishList: View {
                             .swipeActions(edge: .leading) {
                                 Button(action: {
                                     //                                removeTask(at: task)
+                                    pointss = pointss + 1;
                                 }) {
                                     Label("", systemImage: "gift")
                                 }
@@ -84,10 +87,10 @@ struct wishList: View {
                         
                         Text("Products")
                     } }.scrollContentBackground(.hidden)
-              
 
                 
-            }.padding(.top,180)
+            }.padding(.top,180).cornerRadius(500)
+            
 
             
             

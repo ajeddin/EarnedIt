@@ -54,7 +54,7 @@ struct wishListSheet: View{
                             getProductImage(url: URL(string:response)!) { result in
                                 switch result {
                                 case .success(let response):
-                                    let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(6).joined(separator: " "), price: 90.0, rating: response.1)
+                                    let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: 90.0, rating: response.1)
                                     context.insert(product)
        
                                 case .failure(let error):
