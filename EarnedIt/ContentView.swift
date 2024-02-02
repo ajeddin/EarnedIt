@@ -28,10 +28,10 @@ struct ContentView: View {
                 earnedRewards()
                     .tabItem {
                         Label("Earned Items", systemImage: "checkmark.circle.fill")}
-                    .foregroundColor(.blue)
-
+                    .foregroundColor(.blue) 
 
             }
+//            .ignoresSafeArea(.all)
         }}
 }
 
