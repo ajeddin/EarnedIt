@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct toDoList: View {
+    @Environment(\.modelContext) private var context
+    @Query private var tasks: [Tasks];
+
     @State private var addedTasks: [String: [String]] = ["Easy": [], "Medium": [], "Hard": []]
     @State var presentedSheet : Bool = false;
     @State private var newTask = ""
@@ -30,9 +33,9 @@ struct toDoList: View {
                         Section(header: Text("Favorites").foregroundColor(.green).bold().font(.system(size: 16))) {
                            
                             
-                            ForEach(addedTasks["Easy"] ?? [], id:\.self) {task in
+                            ForEach(tasks) { task in
                                 HStack{
-                                    Text(task)
+                                    Text(task.taskText)
                                     Spacer()
                                     Button (action: {} ) {
                                         Label("", systemImage: "star")
@@ -43,6 +46,13 @@ struct toDoList: View {
                                     }
                                     
                                     
+                                }.swipeActions {
+                                    Button(action:
+                                            {context.delete(task)
+                                    }) {
+                                        Label("", systemImage: "trash")
+                                    }
+                                    .tint(.red)
                                 }
                                 
                             }
@@ -50,10 +60,7 @@ struct toDoList: View {
                         }
                         
                         Section(header: Text("Simple").foregroundColor(.green).bold().font(.system(size: 16))) {
-                            HStack {
-                                TextField("Add Task", text: $newTask, onCommit: { addNewTask(section: "Easy")})
-                                
-                            }
+                            
                             
                             ForEach(addedTasks["Easy"] ?? [], id:\.self) {task in
                                 HStack{
@@ -71,20 +78,22 @@ struct toDoList: View {
                                 }
                                 
                             }
+                            HStack {
+                                TextField("Add Task", text: $newTask, onCommit: { addNewTask(task: Tasks(taskText: newTask, taskPoints: 5))})
+                                
+                            }
                             
                         }
                         
                         Section(header: Text("Moderate").foregroundColor(.yellow).bold().font(.system(size: 16))) {
-                            HStack {
-                                TextField("Add Task", text: $newTask, onCommit:{ addNewTask(section: "Medium")})
-                            }
+                          
                             
                             
                             ForEach(addedTasks["Medium"] ?? [], id:\.self) {task in
                                 HStack{
                                     Text(task)
                                     
-                                    Spacer(minLength: 50)
+                                    Spacer()
                                     
                                     
                                     Button (action: {} ) {
@@ -98,12 +107,13 @@ struct toDoList: View {
                                 }
                                 
                             }
+                            HStack {
+//                                TextField("Add Task", text: $newTask, onCommit:{ addNewTask(section: "Medium")})
+                            }
                             
                         }
                         Section (header: Text("Difficult").foregroundColor(.red).bold().font(.system(size: 16))){
-                            HStack {
-                                TextField("Add Task", text: $newTask, onCommit: { addNewTask(section: "Hard")})
-                            }
+                            
                             ForEach(addedTasks["Hard"] ?? [], id:\.self) {task in
                                 HStack{
                                     
@@ -124,25 +134,27 @@ struct toDoList: View {
                                 
                             }
                             
-                        }
-                    }
-                    .scrollContentBackground(.hidden)
-                    
-                    .onSubmit{(addNewTask(section: "hard"))
+                        
+                        HStack {
+//                            TextField("Add Task", text: $newTask, onCommit: { addNewTask(section: "Hard")})
+//                        }
                     }
                 }
-                
+                    .scrollContentBackground(.hidden)
+                    
+//                    .onSubmit{(addNewTask(section: "hard"))
+                    }
+                }
                 
             }.padding(.top,200)
         }
     }
     
-    func addNewTask(section: String) {
-        let task = newTask.trimmingCharacters(in: .whitespacesAndNewlines)
+    func addNewTask(task: Tasks) {
+        task.taskText = task.taskText.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        guard task.count > 0 else { return }
-        
-        addedTasks[section, default: []].insert(task, at: 0)
+        guard task.taskText.count > 0 else { return }
+        context.insert(task)
         newTask = ""
     }
 }

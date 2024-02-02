@@ -89,7 +89,7 @@ struct wishList: View {
                     } }.scrollContentBackground(.hidden)
 
                 
-            }.padding(.top,180).cornerRadius(500)
+            }.padding(.top,180).cornerRadius(25)
             
 
             
