@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct toDoList: View {
-    @State private var addedTask = [String]()
+    @State private var addedTasks: [String: [String]] = ["Easy": [], "Medium": [], "Hard": []]
     @State var presentedSheet : Bool = false;
     @State private var newTask = ""
     
@@ -22,20 +22,22 @@ struct toDoList: View {
             VStack{
                 NavigationStack{
                     List {
-                        Section {
-                            HStack{
-                                TextField("Add Task", text: $newTask)
-                            }
-                        }
-                        Section(header: Text("Simple").foregroundColor(.green).bold().font(.system(size: 16))) {
-                            ForEach(addedTask, id:\.self) {task in
+//                        Section {
+//                            HStack{
+//                                TextField("Add Task", text: $newTask)
+//                            }
+//                        }
+                        Section(header: Text("Favorites").foregroundColor(.green).bold().font(.system(size: 16))) {
+                           
+                            
+                            ForEach(addedTasks["Easy"] ?? [], id:\.self) {task in
                                 HStack{
                                     Text(task)
                                     Spacer()
                                     Button (action: {} ) {
                                         Label("", systemImage: "star")
                                     }
-
+                                    
                                     Button (action: {} ) {
                                         Label("", systemImage: "circle")
                                     }
@@ -46,12 +48,45 @@ struct toDoList: View {
                             }
                             
                         }
-                        Section(header: Text("Moderate").foregroundColor(.yellow).bold().font(.system(size: 16))) {
-
-                            ForEach(addedTask, id:\.self) {task in
+                        
+                        Section(header: Text("Simple").foregroundColor(.green).bold().font(.system(size: 16))) {
+                            HStack {
+                                TextField("Add Task", text: $newTask, onCommit: { addNewTask(section: "Easy")})
+                                
+                            }
+                            
+                            ForEach(addedTasks["Easy"] ?? [], id:\.self) {task in
                                 HStack{
                                     Text(task)
                                     Spacer()
+                                    Button (action: {} ) {
+                                        Label("", systemImage: "star")
+                                    }
+                                    
+                                    Button (action: {} ) {
+                                        Label("", systemImage: "circle")
+                                    }
+                                    
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        Section(header: Text("Moderate").foregroundColor(.yellow).bold().font(.system(size: 16))) {
+                            HStack {
+                                TextField("Add Task", text: $newTask, onCommit:{ addNewTask(section: "Medium")})
+                            }
+                            
+                            
+                            ForEach(addedTasks["Medium"] ?? [], id:\.self) {task in
+                                HStack{
+                                    Text(task)
+                                    
+                                    Spacer(minLength: 50)
+                                    
+                                    
                                     Button (action: {} ) {
                                         Label("", systemImage: "star")
                                     }
@@ -59,15 +94,17 @@ struct toDoList: View {
                                         Label("", systemImage: "circle")
                                     }
                                     
-                                                                        
+                                    
                                 }
                                 
                             }
                             
                         }
                         Section (header: Text("Difficult").foregroundColor(.red).bold().font(.system(size: 16))){
-
-                            ForEach(addedTask, id:\.self) {task in
+                            HStack {
+                                TextField("Add Task", text: $newTask, onCommit: { addNewTask(section: "Hard")})
+                            }
+                            ForEach(addedTasks["Hard"] ?? [], id:\.self) {task in
                                 HStack{
                                     
                                     Text(task)
@@ -76,8 +113,8 @@ struct toDoList: View {
                                     Button (action: {} ) {
                                         Label("", systemImage: "star")
                                     }
-
-
+                                    
+                                    
                                     Button (action: {} ) {
                                         Label("", systemImage: "circle")
                                     }
@@ -90,9 +127,9 @@ struct toDoList: View {
                         }
                     }
                     .scrollContentBackground(.hidden)
-
-                    .onSubmit(addNewTask)
-
+                    
+                    .onSubmit{(addNewTask(section: "hard"))
+                    }
                 }
                 
                 
@@ -100,12 +137,12 @@ struct toDoList: View {
         }
     }
     
-    func addNewTask () {
-        let task = newTask
+    func addNewTask(section: String) {
+        let task = newTask.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        guard task.count > 0 else {return}
+        guard task.count > 0 else { return }
         
-        addedTask.insert(task, at: 0)
+        addedTasks[section, default: []].insert(task, at: 0)
         newTask = ""
     }
 }
