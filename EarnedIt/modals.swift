@@ -15,6 +15,7 @@ class Products : Identifiable{
     var productName:String = " ";
     var price:Float = 0.0;
     var rating:String = " ";
+    var isRedeemed : Bool = false
 //    var id:String?;
 //    var imageURL:String?;
 //    var productName:String?;
@@ -26,6 +27,7 @@ class Products : Identifiable{
         self.productName = productName
         self.price = price
         self.rating = rating
+        self.isRedeemed = false
     }
 
 }
@@ -34,17 +36,19 @@ class Products : Identifiable{
 
 @Model
 class Tasks : Identifiable{
-//    var id:String = " ";
-//    var imageURL:String = " ";
-//    var productName:String = " ";
-//    var price:Float = 0.0;
-//    var rating:String = " ";
-    var imageURL:String?;
+    var taskText: String = ""
+    var taskPoints: Int = 0
+    var isFav : Bool = false
+    var isChecked: Bool = false
+    
+    init(taskText: String, taskPoints: Int) {
+        self.taskText = taskText
+        self.taskPoints = taskPoints
+        self.isFav = false
+        self.isChecked = false
+    }
+    
+    
 
     
-    init(imageURL: String, productName: String, price: Float, rating: String) {
-        self.imageURL = imageURL
-
-    }
-
 }
