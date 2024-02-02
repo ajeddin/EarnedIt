@@ -23,10 +23,11 @@ struct wishList: View {
             VStack{
                 List{
                     Section{
-                        ForEach(products.indices, id: \.self) { product in
+//                        ForEach(products.indices, id: \.self) { product in
+                        ForEach(products) { product in
                             HStack {
                                 
-                                AsyncImage(url: URL(string: products[product].imageURL)) { phase in
+                                AsyncImage(url: URL(string: product.imageURL)) { phase in
                                     if let image = phase.image {
                                         image
                                             .resizable()
@@ -39,24 +40,24 @@ struct wishList: View {
                                 }
                                 .scaledToFit()
                                 .frame(width: 80, height: 80)
-                                Text(products[product].productName).padding(.leading,10)
-                                Text("\(Int(products[product].price))")
+                                Text(product.productName).padding(.leading,10)
+                                Text("\(Int(product.price))")
                             }
+//                            .swipeActions {
+//                                Button(action:
+//                                        {
+//                                    
+//                                    
+//                                    
+//                                    context.delete(products[product])
+//                                }) {
+//                                    Label("", systemImage: "pencil")
+//                                }
+//                                .tint(.orange)
+//                            }
                             .swipeActions {
                                 Button(action:
-                                        {
-                                    
-                                    
-                                    
-                                    context.delete(products[product])
-                                }) {
-                                    Label("", systemImage: "pencil")
-                                }
-                                .tint(.orange)
-                            }
-                            .swipeActions {
-                                Button(action:
-                                        {  context.delete(products[product])
+                                        {  context.delete(product)
                                 }) {
                                     Label("", systemImage: "trash")
                                 }
@@ -74,10 +75,10 @@ struct wishList: View {
                                 Text("redeem points")
                             }
                         }
-                        //                    .onDelete(perform: { indexSet in
-                        //                        for index in indexSet{
-                        //                            context.delete(products[index])
-                        //                        } })
+//                                            .onDelete(perform: { indexSet in
+//                                                for index in indexSet{
+//                                                    context.delete(products[index])
+//                                                } })
                         
                     }header: {
                         
