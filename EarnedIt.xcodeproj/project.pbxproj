@@ -18,6 +18,7 @@
 		210E8D142B69BDB1000D5549 /* wishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E8D132B69BDB1000D5549 /* wishList.swift */; };
 		210E8D162B69BDF2000D5549 /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E8D152B69BDF2000D5549 /* tabView.swift */; };
 		210E8D182B69FC9E000D5549 /* viewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E8D172B69FC9E000D5549 /* viewController.swift */; };
+		21ADFD182B6C74B00085D1F7 /* sheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADFD172B6C74B00085D1F7 /* sheetView.swift */; };
 		21D748BA2B6B508500E9A4EA /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D748B92B6B508500E9A4EA /* functions.swift */; };
 		21D748BD2B6B50C900E9A4EA /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 21D748BC2B6B50C900E9A4EA /* SwiftSoup */; };
 		21D748BF2B6B574000E9A4EA /* modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D748BE2B6B574000E9A4EA /* modals.swift */; };
@@ -41,6 +42,7 @@
 		210E8D172B69FC9E000D5549 /* viewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
 		214246582B6BE3BD00C8CB0B /* EarnedIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EarnedIt.entitlements; sourceTree = "<group>"; };
 		214246592B6BE3FD00C8CB0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		21ADFD172B6C74B00085D1F7 /* sheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sheetView.swift; sourceTree = "<group>"; };
 		21D748B92B6B508500E9A4EA /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 		21D748BE2B6B574000E9A4EA /* modals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modals.swift; sourceTree = "<group>"; };
 		C124358E2B6931AA007588A1 /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				210E8D012B692F3A000D5549 /* Assets.xcassets */,
 				210E8D032B692F3A000D5549 /* Preview Content */,
 				21D748BE2B6B574000E9A4EA /* modals.swift */,
+				21ADFD172B6C74B00085D1F7 /* sheetView.swift */,
 			);
 			path = EarnedIt;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				210E8D122B69BD78000D5549 /* earnedRewards.swift in Sources */,
 				C12435912B6934C3007588A1 /* OnboardingData.swift in Sources */,
 				210E8D002B692F39000D5549 /* ContentView.swift in Sources */,
+				21ADFD182B6C74B00085D1F7 /* sheetView.swift in Sources */,
 				C124358F2B6931AA007588A1 /* onboarding.swift in Sources */,
 				21D748BF2B6B574000E9A4EA /* modals.swift in Sources */,
 				C12435932B69357D007588A1 /* OnboardingView.swift in Sources */,
@@ -333,7 +337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnedIt/Preview Content\"";
-				DEVELOPMENT_TEAM = M8ZG8KDA6A;
+				DEVELOPMENT_TEAM = 42NWXG687M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EarnedIt/Info.plist;
@@ -364,7 +368,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnedIt/Preview Content\"";
-				DEVELOPMENT_TEAM = M8ZG8KDA6A;
+				DEVELOPMENT_TEAM = 42NWXG687M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EarnedIt/Info.plist;
