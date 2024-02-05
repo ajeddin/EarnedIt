@@ -20,7 +20,8 @@ struct wishList: View {
 
     var body: some View {
         ZStack{
-            WavePage(height1: 175 , height2: 210, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Wishlist",points: $points,isPresented:$presentedSheet)
+
+            WavePage(buttonShwn:true,height1: 175 , height2: 210, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Wishlist",points: pointss,isPresented:$presentedSheet)
             
             VStack{
                 List{
@@ -42,8 +43,8 @@ struct wishList: View {
                                 }
                                 .scaledToFit()
                                 .frame(width: 80, height: 80)
-                                Text(product.productName).padding(.leading,10)
-                                Text("\(Int(product.price))")
+                                Text(product.productName).padding(.leading,10).bold()
+//                                Text("\(Int(product.price))")
                             }
 //                            .swipeActions {
 //                                Button(action:
@@ -74,6 +75,7 @@ struct wishList: View {
                                 }
                                 .tint(.yellow)
                             }
+
                             VStack{
                                 Text("redeem points")
                             }

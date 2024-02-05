@@ -19,7 +19,7 @@ struct SplashScreen: View {
                 Rectangle()
                     .foregroundColor(Color("PrimaryApp")).ignoresSafeArea()
 //                    .overlay(Image("EarnedIt") .resizable().scaledToFit())
-                WavePage(height1: 160, height2: 200,isOn: !ReduceMotion, duration1: 1.6,duration2: 1.8,showingText: false , headerText: "",points: 0,isPresented: $isActive)
+                WavePage(buttonShwn:false, height1: 160, height2: 200,isOn: !ReduceMotion, duration1: 1.6,duration2: 1.8,showingText: false , headerText: "",points: 0,isPresented: $isActive)
                     .padding(.top,450)
                 Image("EarnedIt") .resizable().scaledToFit().frame(width: 300,height: 180).padding(.bottom,150)
 
