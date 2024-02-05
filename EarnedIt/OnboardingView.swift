@@ -46,7 +46,10 @@ struct OnboardingView: View {
                    Spacer()
 
                    Text(data.primaryText)
-                       .font(.title2)
+//                       .font(.title2)
+                .font(.system(size: 33))
+
+                       .foregroundColor(Color("AccentColor"))
                        .bold()
 //                       .foregroundColor(Color(red: 41 / 255, green: 52 / 255, blue: 73 / 255))
 //                       .foregroundStyle(Color("primaryApp"))
