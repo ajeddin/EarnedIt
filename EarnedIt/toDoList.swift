@@ -10,10 +10,13 @@ import SwiftData
 struct toDoList: View {
     @Environment(\.modelContext) private var context
     @Query private var tasks: [Tasks];
-
+    @Environment(\.colorScheme) var colorScheme
     @State private var addedTasks: [String: [String]] = ["Easy": [], "Medium": [], "Hard": []]
     @State var presentedSheet : Bool = false;
-    @State private var newTask = ""
+    @State private var newTask1 = ""
+    @State private var newTask2 = ""
+    @State private var newTask3 = ""
+
     
     var body: some View {
         ZStack{
@@ -78,14 +81,16 @@ struct toDoList: View {
                                             task.isFav.toggle()
                                            try? context.save()
                                         } ) {
-                                                Label("", systemImage: task.isFav ? "star.fill" : "star" )
+                                            Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
 
                                         }.buttonStyle(.plain)
                                             .tint(.clear)
                                         
                                         
                                         
-                                    } .swipeActions {
+                                    }
+                                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                                    .swipeActions {
                                         Button(action:
                                                 {context.delete(task)
                                         }) {
@@ -97,12 +102,13 @@ struct toDoList: View {
                                 
                             }
                             HStack {
-                                TextField("Add Task", text: $newTask
-//                                          , onCommit: {}
-                                ).disableAutocorrection(true)
+                                TextField("Add Task", text: $newTask1
+                                ).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+
+                                .disableAutocorrection(true)
                                     .onSubmit() {
-                                        addNewTask(task: Tasks(taskText: newTask, taskPoints: 5))
-                                            newTask = ""
+                                        addNewTask(task: Tasks(taskText: newTask1, taskPoints: 5))
+                                            newTask1 = ""
                                     }
 //                                Button{
 //
@@ -140,13 +146,17 @@ struct toDoList: View {
                                             task.isFav.toggle()
                                            try? context.save()
                                         } ) {
-                                                Label("", systemImage: task.isFav ? "star.fill" : "star" )
+                                            Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
 
-                                        }.buttonStyle(.plain)
+                                        }.foregroundColor(Color.white)
+
+                                        .buttonStyle(.plain)
                                             .tint(.clear)
                                       
                                         
-                                    }.swipeActions {
+                                    }
+                                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                                    .swipeActions {
                                         Button(action:
                                                 {context.delete(task)
                                         }) {
@@ -157,12 +167,12 @@ struct toDoList: View {
                                 
                             }
                             HStack {
-                                TextField("Add Task", text: $newTask
-                                          //                                          , onCommit: {}
-                                ).disableAutocorrection(true)
+                                TextField("Add Task", text: $newTask2
+                                ).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                                .disableAutocorrection(true)
                                     .onSubmit() {
-                                        addNewTask(task: Tasks(taskText: newTask, taskPoints: 10))
-                                        newTask = ""
+                                        addNewTask(task: Tasks(taskText: newTask2, taskPoints: 10))
+                                        newTask2 = ""
                                     }}
 
                             
@@ -200,7 +210,8 @@ struct toDoList: View {
                                        
                                         
                                         
-                                    }.foregroundColor(Color.white)
+                                    }
+                                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                                     .buttonStyle(.plain)
 
                                     .swipeActions {
@@ -216,19 +227,21 @@ struct toDoList: View {
                             
                         
                             HStack {
-                                TextField("Add Task", text: $newTask
-                                          //                                          , onCommit: {}
-                                ).disableAutocorrection(true)
+                                TextField("Add Task", text: $newTask3
+                                ).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+
+                                .disableAutocorrection(true)
                                     .onSubmit() {
-                                        addNewTask(task: Tasks(taskText: newTask, taskPoints: 15))
-                                        newTask = ""
+                                        addNewTask(task: Tasks(taskText: newTask3, taskPoints: 15))
+                                        newTask3 = ""
                                     }}
 
                 }
                     .scrollContentBackground(.hidden)
                     
 //                    .onSubmit{(addNewTask(section: "hard"))
-                    }
+                    }                                            .tint(.clear)
+
                 }
                 
             }.padding(.top,200)
