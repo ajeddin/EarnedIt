@@ -36,7 +36,7 @@ struct Wave: Shape {
 
 
 struct WavePage: View {
-    
+    var buttonShwn: Bool
     var height1: CGFloat;
     var height2: CGFloat;
     var isOn : Bool
@@ -98,21 +98,21 @@ struct WavePage: View {
                                             .font(Font.system(size: 18)).bold().foregroundColor(Color("ForegroundColor"))
                                     }.padding(.leading,30)
                                     Spacer()
-                                    
-                                    Button(action: {isPresented=true}) {
-                                    Image(systemName: "plus")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 19, height: 19)
-                                        .foregroundColor(Color("AccentColor"))
-                                        .padding(15)
-                                        .background(Color.white)
-                                        .clipShape(Circle())
-                                }
-                                .padding([.top,.trailing],20)
-//                                .padding(.trailing,5)
-                                    
-                                }.padding(.top,50)
+                                    if (buttonShwn){
+                                        Button(action: {isPresented=true}) {
+                                            Image(systemName: "plus")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 19, height: 19)
+                                                .foregroundColor(Color("AccentColor"))
+                                                .padding(15)
+                                                .background(Color.white)
+                                                .clipShape(Circle())
+                                        }
+                                        .padding([.top,.trailing],20)
+                                        //                                .padding(.trailing,5)
+                                        
+                                    }}.padding(.top,50)
                                 
                             }
 //
