@@ -25,62 +25,94 @@ struct toDoList: View {
             VStack{
                 NavigationStack{
                     List {
-//                        Section {
-//                            HStack{
-//                                TextField("Add Task", text: $newTask)
+//                        if tasks.filter({ $0.isChecked }).count > 0 {
+//                        Section(header: Text("Favorites").foregroundColor(.green).bold().font(.system(size: 16))) {
+//                            
+//                            
+//                            ForEach(tasks) { task in
+//                                
+//                                if (task.isChecked == true){
+//                                    
+//                                    HStack{
+//                                        Text(task.taskText)
+//                                        Spacer()
+//                                        Button (action: {} ) {
+//                                            Label("", systemImage: "star")
+//                                        }
+//                                        
+//                                        Button (action: {} ) {
+//                                            Label("", systemImage: "circle")
+//                                        }
+//                                        
+//                                        
+//                                    }.swipeActions {
+//                                        Button(action:
+//                                                {context.delete(task)
+//                                        }) {
+//                                            Label("", systemImage: "trash")
+//                                        }
+//                                        .tint(.red)
+//                                    }}
+//                                
 //                            }
+//                            
 //                        }
-                        Section(header: Text("Favorites").foregroundColor(.green).bold().font(.system(size: 16))) {
-                           
-                            
-                            ForEach(tasks) { task in
-                                HStack{
-                                    Text(task.taskText)
-                                    Spacer()
-                                    Button (action: {} ) {
-                                        Label("", systemImage: "star")
-                                    }
-                                    
-                                    Button (action: {} ) {
-                                        Label("", systemImage: "circle")
-                                    }
-                                    
-                                    
-                                }.swipeActions {
-                                    Button(action:
-                                            {context.delete(task)
-                                    }) {
-                                        Label("", systemImage: "trash")
-                                    }
-                                    .tint(.red)
-                                }
-                                
-                            }
-                            
-                        }
-                        
+//                    }
                         Section(header: Text("Simple").foregroundColor(.green).bold().font(.system(size: 16))) {
                             
                             
-                            ForEach(addedTasks["Easy"] ?? [], id:\.self) {task in
-                                HStack{
-                                    Text(task)
-                                    Spacer()
-                                    Button (action: {} ) {
-                                        Label("", systemImage: "star")
-                                    }
+                            ForEach(tasks) { task in
+                                if (task.taskPoints == 5){
                                     
-                                    Button (action: {} ) {
-                                        Label("", systemImage: "circle")
-                                    }
-                                    
-                                    
-                                }
+                                    HStack{
+                                        Button (action: {
+                                            task.isChecked.toggle()
+                                           try? context.save()
+                                        } ) {
+                                            Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
+                                        }.buttonStyle(.plain)
+                                            .tint(.clear)
+                                        Text(task.taskText)
+                                        Spacer()
+                                        Button (action: {
+                                            task.isFav.toggle()
+                                           try? context.save()
+                                        } ) {
+                                                Label("", systemImage: task.isFav ? "star.fill" : "star" )
+
+                                        }.buttonStyle(.plain)
+                                            .tint(.clear)
+                                        
+                                        
+                                        
+                                    } .swipeActions {
+                                        Button(action:
+                                                {context.delete(task)
+                                        }) {
+                                            Label("", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                    }}
+                                
                                 
                             }
                             HStack {
-                                TextField("Add Task", text: $newTask, onCommit: { addNewTask(task: Tasks(taskText: newTask, taskPoints: 5))})
+                                TextField("Add Task", text: $newTask
+//                                          , onCommit: {}
+                                ).disableAutocorrection(true)
+                                    .onSubmit() {
+                                        addNewTask(task: Tasks(taskText: newTask, taskPoints: 5))
+                                            newTask = ""
+                                    }
+//                                Button{
+//
+//                                }label:{
+//                                    Image(systemName: "checkmark").foregroundColor(Color.white)
+//                                }
                                 
+//                                Button (action: {} ) {
+//                                    Label("", systemImage: "star")
+//                                }
                             }
                             
                         }
@@ -89,56 +121,109 @@ struct toDoList: View {
                           
                             
                             
-                            ForEach(addedTasks["Medium"] ?? [], id:\.self) {task in
-                                HStack{
-                                    Text(task)
-                                    
-                                    Spacer()
-                                    
-                                    
-                                    Button (action: {} ) {
-                                        Label("", systemImage: "star")
-                                    }
-                                    Button (action: {} ) {
-                                        Label("", systemImage: "circle")
-                                    }
-                                    
-                                    
-                                }
+                            ForEach(tasks) { task in
+                                if (task.taskPoints == 10){
+                                    HStack{
+                                        Button (action: {
+                                            task.isChecked.toggle()
+                                           try? context.save()
+                                        } ) {
+                                            Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
+                                        }.buttonStyle(.plain)
+                                            .tint(.clear)
+                                        Text(task.taskText)
+                                        
+                                        Spacer()
+                                        
+                                        
+                                        Button (action: {
+                                            task.isFav.toggle()
+                                           try? context.save()
+                                        } ) {
+                                                Label("", systemImage: task.isFav ? "star.fill" : "star" )
+
+                                        }.buttonStyle(.plain)
+                                            .tint(.clear)
+                                      
+                                        
+                                    }.swipeActions {
+                                        Button(action:
+                                                {context.delete(task)
+                                        }) {
+                                            Label("", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                    }}
                                 
                             }
                             HStack {
-//                                TextField("Add Task", text: $newTask, onCommit:{ addNewTask(section: "Medium")})
-                            }
+                                TextField("Add Task", text: $newTask
+                                          //                                          , onCommit: {}
+                                ).disableAutocorrection(true)
+                                    .onSubmit() {
+                                        addNewTask(task: Tasks(taskText: newTask, taskPoints: 10))
+                                        newTask = ""
+                                    }}
+
+                            
                             
                         }
                         Section (header: Text("Difficult").foregroundColor(.red).bold().font(.system(size: 16))){
                             
-                            ForEach(addedTasks["Hard"] ?? [], id:\.self) {task in
-                                HStack{
+                            ForEach(tasks) { task in
+                                if (task.taskPoints == 15){
                                     
-                                    Text(task)
-                                    Spacer()
-                                    
-                                    Button (action: {} ) {
-                                        Label("", systemImage: "star")
-                                    }
-                                    
-                                    
-                                    Button (action: {} ) {
-                                        Label("", systemImage: "circle")
-                                    }
-                                    
-                                    
-                                }
+                                    HStack{
+                                        Button (action: {
+                                            task.isChecked.toggle()
+                                           try? context.save()
+                                        } ) {
+                                            Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
+                                        }
+//                                        .buttonStyle(.plain)
+                                            .tint(.clear)
+                                        
+                                        Text(task.taskText)
+                                        Spacer()
+                                        
+                                        Button (action: {
+                                            task.isFav.toggle()
+                                           try? context.save()
+                                        } ) {
+                                                Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
+
+                                        }
+//                                        .buttonStyle(.plain)
+                                            .tint(.clear)
+                                        
+                                        
+                                       
+                                        
+                                        
+                                    }.foregroundColor(Color.white)
+                                    .buttonStyle(.plain)
+
+                                    .swipeActions {
+                                        Button(action:
+                                                {context.delete(task)
+                                        }) {
+                                            Label("", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                    }}
                                 
                             }
                             
                         
-                        HStack {
-//                            TextField("Add Task", text: $newTask, onCommit: { addNewTask(section: "Hard")})
-//                        }
-                    }
+                            HStack {
+                                TextField("Add Task", text: $newTask
+                                          //                                          , onCommit: {}
+                                ).disableAutocorrection(true)
+                                    .onSubmit() {
+                                        addNewTask(task: Tasks(taskText: newTask, taskPoints: 15))
+                                        newTask = ""
+                                    }}
+
                 }
                     .scrollContentBackground(.hidden)
                     
@@ -147,15 +232,14 @@ struct toDoList: View {
                 }
                 
             }.padding(.top,200)
-        }
-    }
+        }     }
     
     func addNewTask(task: Tasks) {
         task.taskText = task.taskText.trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard task.taskText.count > 0 else { return }
+
         context.insert(task)
-        newTask = ""
     }
 }
         
