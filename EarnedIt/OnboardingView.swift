@@ -8,13 +8,14 @@
 import SwiftUI
 
 //import SwiftUI
-
+import SwiftData
 struct OnboardingView: View {
     var data: OnboardingData
     @State private var isAnimating: Bool = false
-    @AppStorage("welcomeScreenShown")
-    var welcomeScreenShown: Bool = false;
-    // @State private var currentPageIndex: Int = 0
+//    @AppStorage("welcomeScreenShown")
+//    var welcomeScreenShown: Bool = false;
+    @Environment(\.modelContext) private var context
+    @Query private var defaults: [UserDefault];
     @Binding var currentPageIndex: Int
 
     
@@ -25,7 +26,11 @@ struct OnboardingView: View {
                 Spacer()
                 if currentPageIndex != 2 {
                     Button("Skip",  action: {
-                        welcomeScreenShown = true}
+                        let defaultUser = UserDefault(points: 0, onboardingViewed: true)
+                        context.insert(defaultUser)
+                        
+                    }
+                        
                     )
                     
                     .foregroundColor(.blue)
@@ -64,7 +69,8 @@ struct OnboardingView: View {
                    Spacer()
             if currentPageIndex == 2 {
                 Button(action: {
-                    welcomeScreenShown = true
+                    let defaultUser = UserDefault(points: 0, onboardingViewed: true)
+                    context.insert(defaultUser)
                 }, label: {
                     Text("Get Started")
                         .font(.headline)

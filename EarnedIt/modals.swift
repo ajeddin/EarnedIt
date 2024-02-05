@@ -14,20 +14,20 @@ class Products : Identifiable{
     var imageURL:String = " ";
     var productName:String = " ";
     var price:Float = 0.0;
-    var rating:String = " ";
     var isRedeemed : Bool = false
+    var productLink : String = ""
 //    var id:String?;
 //    var imageURL:String?;
 //    var productName:String?;
 //    var price:Float?;
 //    var rating:String?;
-    init(imageURL: String, productName: String, price: Float, rating: String) {
+    init(imageURL: String, productName: String, price: Float, productLink: String) {
         self.id = UUID().uuidString
         self.imageURL = imageURL
         self.productName = productName
         self.price = price
-        self.rating = rating
         self.isRedeemed = false
+        self.productLink = productLink
     }
 
 }
@@ -50,5 +50,16 @@ class Tasks : Identifiable{
     
     
 
+    
+}
+
+@Model
+class UserDefault: Identifiable{
+    var points:Int = 0
+    var onboardingViewed: Bool = false
+    init(points: Int, onboardingViewed: Bool) {
+        self.points = points
+        self.onboardingViewed = onboardingViewed
+    }
     
 }

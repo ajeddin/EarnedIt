@@ -31,7 +31,7 @@ struct EarnedItApp: App {
     var body: some Scene {
         WindowGroup {
             viewController()
-        }.modelContainer(for: [Products.self,Tasks.self])
+        }.modelContainer(for: [Products.self,Tasks.self,UserDefault.self])
 //        .modelContainer(container)
     }
 }
