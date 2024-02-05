@@ -16,13 +16,15 @@ struct toDoList: View {
     @State private var newTask1 = ""
     @State private var newTask2 = ""
     @State private var newTask3 = ""
+    @State private var points: Int = 0
+
 
     
     var body: some View {
         ZStack{
             VStack{
+
                 WavePage(buttonShwn:false,height1: 160 , height2: 190, isOn: true,duration1: 20,duration2: 25, showingText: true, headerText: "To-Do List",points: 30,isPresented:$presentedSheet)
-            }.sheet(isPresented: $presentedSheet, content: {
                 toDoListSheet()
             })
             VStack{
@@ -71,6 +73,12 @@ struct toDoList: View {
                                         Button (action: {
                                             task.isChecked.toggle()
                                            try? context.save()
+                                            
+                                            if task.isChecked {
+                                                points += 5
+
+                                            }
+                                            
                                         } ) {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
                                         }.buttonStyle(.plain)
@@ -110,15 +118,7 @@ struct toDoList: View {
                                         addNewTask(task: Tasks(taskText: newTask1, taskPoints: 5))
                                             newTask1 = ""
                                     }
-//                                Button{
-//
-//                                }label:{
-//                                    Image(systemName: "checkmark").foregroundColor(Color.white)
-//                                }
-                                
-//                                Button (action: {} ) {
-//                                    Label("", systemImage: "star")
-//                                }
+
                             }
                             
                         }
@@ -133,6 +133,10 @@ struct toDoList: View {
                                         Button (action: {
                                             task.isChecked.toggle()
                                            try? context.save()
+                                            
+                                            if task.isChecked {
+                                                points += 10
+                                            }
                                         } ) {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
                                         }.buttonStyle(.plain)
@@ -181,12 +185,18 @@ struct toDoList: View {
                         Section (header: Text("Difficult").foregroundColor(.red).bold().font(.system(size: 16))){
                             
                             ForEach(tasks) { task in
-                                if (task.taskPoints == 15){
+                                if (task.taskPoints == 20){
                                     
                                     HStack{
                                         Button (action: {
                                             task.isChecked.toggle()
                                            try? context.save()
+                                            
+                                            if task.isChecked {
+                                                points += 20
+
+                                            }
+                                            
                                         } ) {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
                                         }
@@ -232,7 +242,7 @@ struct toDoList: View {
 
                                 .disableAutocorrection(true)
                                     .onSubmit() {
-                                        addNewTask(task: Tasks(taskText: newTask3, taskPoints: 15))
+                                        addNewTask(task: Tasks(taskText: newTask3, taskPoints: 20))
                                         newTask3 = ""
                                     }}
 
@@ -240,9 +250,9 @@ struct toDoList: View {
                     .scrollContentBackground(.hidden)
                     
 //                    .onSubmit{(addNewTask(section: "hard"))
-                    }                                            .tint(.clear)
+                    }.tint(.clear)
 
-                }
+                }.tint(.clear)
                 
             }.padding(.top,200)
         }     }
@@ -253,6 +263,8 @@ struct toDoList: View {
         guard task.taskText.count > 0 else { return }
 
         context.insert(task)
+        
+       
     }
 }
         
