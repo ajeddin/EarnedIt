@@ -49,7 +49,6 @@ struct wishListSheet: View{
                 
                 Button(action: {
                     if (price <= 0){
-                        print("helloFailr")
                     }else{
                         if let range = link.range(of: "https") {
                             var result = String(link[range.lowerBound...])
@@ -69,7 +68,7 @@ struct wishListSheet: View{
                                     getProductImage(url: URL(string:response)!) { result in
                                         switch result {
                                         case .success(let response):
-                                            let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: Float(price), rating: response.1)
+                                            let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: Float(price), productLink: response.1)
                                             context.insert(product)
                                             
                                         case .failure(let error):
@@ -98,11 +97,29 @@ struct wishListSheet: View{
                 
             }
             else if(amazonBool==2){
-                TextField("Link", text: $link)
-                TextField("Add Photo", text: $photo)
-                TextField("Item Name", text: $itemName)
-//                TextField("Price", text: $price)
+                VStack{
+                    TextField("Enter Product Name", text: $itemName).disableAutocorrection(true)
+
+                    HStack{
+
+                        TextField("Paste Product Link Here", text: $link).disableAutocorrection(true)
+                        PasteButton(payloadType: String.self) { strings in
+                            link = strings[0]
+                        }}
+                    TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat)
+                    
+                }.padding(25)
+                Button{
+                    if (itemName.isEmpty || price <= 0){}
+                    else{
+                        let product = Products(imageURL: "https://img.freepik.com/free-photo/cardboard-box_144627-20326.jpg?w=1480&t=st=1707146075~exp=1707146675~hmac=dd95c4723f0a52fee3a5b590d4e8c16b8c10fb4ced4cd19af3932bc0aa5510e5", productName: itemName, price: Float(price), productLink: link)
+                        context.insert(product)
+                        dismiss()
+
+                    }
+                } label: {Text("Done")}
             }
+           
             else{
                 Text("Choose Product Type to continue")
                     .presentationDetents([.large])

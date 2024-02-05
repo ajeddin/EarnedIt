@@ -23,8 +23,9 @@ struct toDoList: View {
     var body: some View {
         ZStack{
             VStack{
+                WavePage(buttonShwn:false,height1: 160 , height2: 190, isOn: true,duration1: 20,duration2: 25, showingText: true, headerText: "To-Do List",isPresented:$presentedSheet)
+            }.sheet(isPresented: $presentedSheet, content: {
 
-                WavePage(buttonShwn:false,height1: 160 , height2: 190, isOn: true,duration1: 20,duration2: 25, showingText: true, headerText: "To-Do List",points: 30,isPresented:$presentedSheet)
                 toDoListSheet()
             })
             VStack{

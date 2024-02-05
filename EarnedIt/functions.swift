@@ -24,11 +24,12 @@ func getProductImage(url: URL, completion: @escaping (Result<(String,String,Stri
             let container: Element = try doc.getElementById("dp-container")!
             let titleElement: Element = try container.getElementById("productTitle")!
             guard let title = try? titleElement.text() else { return }
-            let rating: Element = try doc.getElementById("acrPopover")!
-            let ratingText = try rating.text()
+//            let rating: Element = try doc.getElementById("acrPopover")!
+//            let ratingText = try rating.text()
+            
             let imageElement: Element = try container.select("#imgTagWrapperId img").first()!
             let imgLink = try imageElement.attr("src")
-            completion(.success((imgLink,ratingText,title)))
+            completion(.success((imgLink,try String(contentsOf: url),title)))
         } catch {
             completion(.failure(error))
         }

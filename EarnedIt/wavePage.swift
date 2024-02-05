@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 struct Wave: Shape {
     var yOffset: CGFloat = 0.4
 
@@ -36,6 +37,8 @@ struct Wave: Shape {
 
 
 struct WavePage: View {
+    @Environment(\.modelContext) private var context
+    @Query private var defaults: [UserDefault];
     var buttonShwn: Bool
     var height1: CGFloat;
     var height2: CGFloat;
@@ -44,7 +47,7 @@ struct WavePage: View {
     var duration2 : Double;
     var showingText: Bool;
     var headerText: String;
-    var points: Int;
+//    var points: Int;
     @Binding var isPresented :Bool;
     var cond = false;
     @State private var change = false;
@@ -92,7 +95,7 @@ struct WavePage: View {
                                         //                                        .padding([.leading,.top],28)
                                             .font(Font.system(size: 35)).bold().foregroundColor(Color("ForegroundColor"))
                                         
-                                        Text("Points: \(points)")
+                                        Text("Points: \(defaults[0].points)")
 //                                                                                .padding(.leading,30)
                                         //                                        .padding(.top,50)
                                             .font(Font.system(size: 18)).bold().foregroundColor(Color("ForegroundColor"))
