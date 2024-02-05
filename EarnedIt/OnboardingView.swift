@@ -49,6 +49,10 @@ struct OnboardingView: View {
 
                    Spacer()
                    Spacer()
+                   Spacer()
+
+        
+
 
                    Text(data.primaryText)
 //                       .font(.title2)
@@ -66,7 +70,10 @@ struct OnboardingView: View {
 //                       .foregroundColor(Color.black)
                      
 
-                   Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+
             if currentPageIndex == 2 {
                 Button(action: {
                     let defaultUser = UserDefault(points: 0, onboardingViewed: true)

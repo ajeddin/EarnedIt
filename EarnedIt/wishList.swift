@@ -14,6 +14,7 @@ struct wishList: View {
 
     @State var presentedSheet : Bool = false;
 
+
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
 
 //    @State var arrayProducts: Product?;
@@ -22,6 +23,7 @@ struct wishList: View {
     var body: some View {
         ZStack{
             WavePage(buttonShwn:true,height1: 175 , height2: 210, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Wishlist",isPresented:$presentedSheet)
+
             
             VStack{
                 List{
@@ -76,6 +78,7 @@ struct wishList: View {
 //                                }
 //                                .tint(.yellow)
 //                            }
+
                             VStack{
                                 Button{
                                     
