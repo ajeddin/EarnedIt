@@ -108,7 +108,8 @@ struct wishListSheet: View{
                         PasteButton(payloadType: String.self) { strings in
                             link = strings[0]
                         }}
-                    TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat)
+                    TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat)    .keyboardType(.numberPad)
+
                     
                 }.padding(25)
                 Button{
@@ -124,12 +125,19 @@ struct wishListSheet: View{
             }
            
             else{
-                Text("Choose Product Type to continue")
-                    .presentationDetents([.large])
+                
+                VStack(alignment: .center){
+                    Spacer()
 
+                    Image("noProducts").resizable().scaledToFit().frame(width: 100)
+//                    Text("Create your wishlist")
+                    Text("Choose Product Type To Continue ").padding(.top,5).foregroundColor(Color("ForegroundColor")).bold()
+                    Spacer()
+
+                }
             }
             Spacer()
-        }.padding(.top,80)
+        }.padding(.top,20)
       
 
 

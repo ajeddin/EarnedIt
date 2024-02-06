@@ -33,8 +33,9 @@ struct OnboardingView: View {
                         
                     )
                     
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color("ForegroundColor"))
                     .edgesIgnoringSafeArea(.top)
+                    .font(.title3)
                     .padding(.trailing, 40)
                     .padding(.top, 1)
                     
@@ -88,9 +89,7 @@ struct OnboardingView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(
                                     Color(
-                                        red: 255 / 255,
-                                        green: 202 / 255,
-                                        blue: 47 / 255
+                                        "AccentColor"
                                     )
                                 )
                         )

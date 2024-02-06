@@ -25,6 +25,7 @@ struct ContentView: View {
                 //                .environmentObject(data)
                     .tabItem {
                         Label("Wishlist", systemImage: "heart")}
+                
                 toDoList()
                     .tabItem {
                         Label("To-Do List", systemImage: "checklist")}
@@ -36,8 +37,12 @@ struct ContentView: View {
                     .foregroundColor(.blue) 
 
             }
-//            .ignoresSafeArea(.all)
-        }}
+//            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+//                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+//                 .ignoresSafeArea(.all)
+
+             }
+        }
 }
 
 #Preview {

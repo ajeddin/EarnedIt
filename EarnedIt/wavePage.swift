@@ -89,11 +89,11 @@ struct WavePage: View {
                         
                             .overlay(alignment: .topLeading){
                                 HStack{
-                                    VStack{
+                                    VStack(alignment:.leading){
                                         
                                         Text("\(headerText)")
                                         //                                        .padding([.leading,.top],28)
-                                            .font(.largeTitle).bold().foregroundColor(Color("ForegroundColor"))
+                                            .font(.largeTitle).foregroundColor(Color("ForegroundColor"))
 //                                            do {
 //                                                Text("Points: \(defaults[0].points)")
 //                                            } catch IndexError.outOfRange {
@@ -101,14 +101,15 @@ struct WavePage: View {
 //                                                Text("Points: 0")
 //                                            }
                                         if (defaults.isEmpty){
-                                            Text("Points: 0")                                            .font(Font.system(size: 18)).bold().foregroundColor(Color("ForegroundColor"))
+                                            Text("Points: 0")                                            .font(.title2).foregroundColor(Color("ForegroundColor"))
 
 
                                         }else{
-                                            Text("Points: \(defaults[0].points)")                                            .font(.title2).bold().foregroundColor(Color("ForegroundColor"))
+                                            Text("Points: \(defaults[0].points)")                                            .font(.title2).foregroundColor(Color("ForegroundColor"))
 }//                                                                                .padding(.leading,30)
                                         //                                        .padding(.top,50)
-                                    }.padding(.leading,30)
+                                    }
+                                    .padding(.leading,20)
                                     Spacer()
                                     if (buttonShwn){
                                         Button(action: {isPresented=true}) {
@@ -117,14 +118,19 @@ struct WavePage: View {
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 19, height: 19)
                                                 .foregroundColor(Color("AccentColor"))
-                                                .padding(15)
+                                                .padding(16)
                                                 .background(Color.white)
                                                 .clipShape(Circle())
                                         }
-                                        .padding([.top,.trailing],20)
+//                                        .padding([.top,.trailing],20)
+                                        .frame(alignment: .trailing)
+                                        .padding(.trailing,20)
+
                                         //                                .padding(.trailing,5)
                                         
-                                    }}.padding(.top,50)
+                                    }}
+                                .padding(.top,58)
+                                
                                 
                             }
 //

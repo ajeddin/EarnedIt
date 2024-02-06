@@ -19,7 +19,9 @@ struct onboarding: View {
                            .tag(viewData.id)
                    }})
                .tabViewStyle(PageTabViewStyle())
-               .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+//               .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+               .tabViewStyle(.page(indexDisplayMode: .never))
+
            }
        }
 
