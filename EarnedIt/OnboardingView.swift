@@ -14,8 +14,8 @@ struct OnboardingView: View {
     @State private var isAnimating: Bool = false
 //    @AppStorage("welcomeScreenShown")
 //    var welcomeScreenShown: Bool = false;
-    @Environment(\.modelContext) private var context
-    @Query private var defaults: [UserDefault];
+    @Environment(\.modelContext) private var Modelcontext
+    @Query private var defaults: [UserChoices];
     @Binding var currentPageIndex: Int
 
     
@@ -26,8 +26,8 @@ struct OnboardingView: View {
                 Spacer()
                 if currentPageIndex != 2 {
                     Button("Skip",  action: {
-                        let defaultUser = UserDefault(points: 0, onboardingViewed: true)
-                        context.insert(defaultUser)
+                        let defaultUserr = UserChoices(points: 0, onboardingViewed: true)
+                        Modelcontext.insert(defaultUserr)
                         
                     }
                         
@@ -76,8 +76,8 @@ struct OnboardingView: View {
 
             if currentPageIndex == 2 {
                 Button(action: {
-                    let defaultUser = UserDefault(points: 0, onboardingViewed: true)
-                    context.insert(defaultUser)
+                    let defaultUser = UserChoices(points: 0, onboardingViewed: true)
+                    Modelcontext.insert(defaultUser)
                 }, label: {
                     Text("Get Started")
                         .font(.headline)

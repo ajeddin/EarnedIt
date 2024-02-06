@@ -11,9 +11,10 @@ struct ContentView: View {
 //    @AppStorage("welcomeScreenShown")
 //    var welcomeScreenShown: Bool = false;
     @Environment(\.modelContext) private var context
-    @Query private var defaults: [UserDefault];
+    @Query private var defaults: [UserChoices];
     var body: some View {
         if (defaults.isEmpty ){
+            
             onboarding()
 //            let defaultUser = UserDefault(points: 0, onboardingViewed: true)
 //            context.insert(defaultUser)
