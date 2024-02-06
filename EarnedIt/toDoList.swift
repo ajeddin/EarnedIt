@@ -37,7 +37,7 @@ struct toDoList: View {
                         Section(header: Text("Simple").foregroundColor(.green).bold().font(.system(size: 16))) {
                             
                             
-                            ForEach(tasks) { task in
+                            ForEach(tasks.sorted(by: { $0.isFav && !$1.isFav })) { task in
                                 if (task.taskPoints == 5){
                                     
                                     HStack{
@@ -58,7 +58,7 @@ struct toDoList: View {
                                         
                                         Spacer()
                                         Button (action: {
-                                            task.isFav.toggle()
+                                            withAnimation {  task.isFav.toggle()}
                                            try? context.save()
                                         } ) {
                                             Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
@@ -100,51 +100,50 @@ struct toDoList: View {
                         
                         Section(header: Text("Moderate").foregroundColor(.yellow).bold().font(.system(size: 16))) {
                           
-                            
-                            
-                            ForEach(tasks) { task in
-                                if (task.taskPoints == 10){
-                                    HStack{
-                                        Button (action: {
-                                            task.isChecked.toggle()
-                                           try? context.save()
-                                            
-                                            if task.isChecked {
-                                                defaults[0].points += 10
-                                            }
-                                        } ) {
-                                            Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
-                                        }.buttonStyle(.plain)
-                                            .tint(.clear)
-                                        Text(task.taskText)
-                                        
-                                        Spacer()
-                                        
-                                        
-                                        Button (action: {
-                                            task.isFav.toggle()
-                                           try? context.save()
-                                        } ) {
-                                            Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
-
-                                        }.foregroundColor(Color.white)
-
-                                        .buttonStyle(.plain)
-                                            .tint(.clear)
-                                      
-                                        
-                                    }
-                                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                                    .swipeActions {
-                                        Button(action:
-                                                {context.delete(task)
-                                        }) {
-                                            Label("", systemImage: "trash")
-                                        }
-                                        .tint(.red)
-                                    }}
                                 
-                            }
+                                ForEach(tasks.sorted(by: { $0.isFav && !$1.isFav })){ task in
+                                    if (task.taskPoints == 10){
+                                        HStack{
+                                            Button (action: {
+                                                task.isChecked.toggle()
+                                                try? context.save()
+                                                
+                                                if task.isChecked {
+                                                    defaults[0].points += 10
+                                                }
+                                            } ) {
+                                                Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
+                                            }.buttonStyle(.plain)
+                                                .tint(.clear)
+                                            Text(task.taskText)
+                                            
+                                            Spacer()
+                                            
+                                            
+                                            Button (action: {
+                                                withAnimation {  task.isFav.toggle()}
+                                                try? context.save()
+                                            } ) {
+                                                Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
+                                                
+                                            }.foregroundColor(Color.white)
+                                            
+                                                .buttonStyle(.plain)
+                                                .tint(.clear)
+                                            
+                                            
+                                        }
+                                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                                        .swipeActions {
+                                            Button(action:
+                                                    {context.delete(task)
+                                            }) {
+                                                Label("", systemImage: "trash")
+                                            }
+                                            .tint(.red)
+                                        }}
+                                    
+                                }
                             HStack {
                                 TextField("Add Task", text: $newTask2
                                 ).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
@@ -159,7 +158,7 @@ struct toDoList: View {
                         }
                         Section (header: Text("Difficult").foregroundColor(.red).bold().font(.system(size: 16))){
                             
-                            ForEach(tasks) { task in
+                            ForEach(tasks.sorted(by: { $0.isFav && !$1.isFav })){ task in
                                 if (task.taskPoints == 20){
                                     
                                     HStack{
@@ -182,7 +181,8 @@ struct toDoList: View {
                                         Spacer()
                                         
                                         Button (action: {
-                                            task.isFav.toggle()
+                                            withAnimation {  
+                                                task.isFav.toggle()}
                                            try? context.save()
                                         } ) {
                                                 Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
