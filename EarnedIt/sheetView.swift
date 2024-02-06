@@ -54,8 +54,9 @@ struct wishListSheet: View{
                             var result = String(link[range.lowerBound...])
                             result = result.trimmingCharacters(in: .whitespacesAndNewlines)
                             link = result
-                            //                        print(result)
                             dismiss()
+
+                            //                        print(result)
                         } else {
                             print("Substring 'https' not found")
                         }
@@ -68,9 +69,9 @@ struct wishListSheet: View{
                                     getProductImage(url: URL(string:response)!) { result in
                                         switch result {
                                         case .success(let response):
-                                            let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: Float(price), productLink: response.1)
+                                            let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: response.1)
                                             context.insert(product)
-                                            
+
                                         case .failure(let error):
                                             print("Error: \(error)")
                                         }
@@ -112,7 +113,7 @@ struct wishListSheet: View{
                 Button{
                     if (itemName.isEmpty || price <= 0){}
                     else{
-                        let product = Products(imageURL: "https://img.freepik.com/free-photo/cardboard-box_144627-20326.jpg?w=1480&t=st=1707146075~exp=1707146675~hmac=dd95c4723f0a52fee3a5b590d4e8c16b8c10fb4ced4cd19af3932bc0aa5510e5", productName: itemName, price: Float(price), productLink: link)
+                        let product = Products(imageURL: "https://img.freepik.com/free-photo/cardboard-box_144627-20326.jpg?w=1480&t=st=1707146075~exp=1707146675~hmac=dd95c4723f0a52fee3a5b590d4e8c16b8c10fb4ced4cd19af3932bc0aa5510e5", productName: itemName, price: price, productLink: link)
                         context.insert(product)
                         dismiss()
 

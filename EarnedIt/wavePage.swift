@@ -38,7 +38,7 @@ struct Wave: Shape {
 
 struct WavePage: View {
     @Environment(\.modelContext) private var context
-    @Query private var defaults: [UserDefault];
+    @Query private var defaults: [UserChoices];
     var buttonShwn: Bool
     var height1: CGFloat;
     var height2: CGFloat;
@@ -94,11 +94,20 @@ struct WavePage: View {
                                         Text("\(headerText)")
                                         //                                        .padding([.leading,.top],28)
                                             .font(Font.system(size: 35)).bold().foregroundColor(Color("ForegroundColor"))
-                                        
-                                        Text("Points: \(defaults[0].points)")
-//                                                                                .padding(.leading,30)
+//                                            do {
+//                                                Text("Points: \(defaults[0].points)")
+//                                            } catch IndexError.outOfRange {
+//                                                // Handle the specific error by setting a default value
+//                                                Text("Points: 0")
+//                                            }
+                                        if (defaults.isEmpty){
+                                            Text("Points: 0")                                            .font(Font.system(size: 18)).bold().foregroundColor(Color("ForegroundColor"))
+
+
+                                        }else{
+                                            Text("Points: \(defaults[0].points)")                                            .font(Font.system(size: 18)).bold().foregroundColor(Color("ForegroundColor"))
+}//                                                                                .padding(.leading,30)
                                         //                                        .padding(.top,50)
-                                            .font(Font.system(size: 18)).bold().foregroundColor(Color("ForegroundColor"))
                                     }.padding(.leading,30)
                                     Spacer()
                                     if (buttonShwn){

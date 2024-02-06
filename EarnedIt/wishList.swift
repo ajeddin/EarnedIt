@@ -10,7 +10,7 @@ import SwiftData
 struct wishList: View {
     @Environment(\.modelContext) private var context
     @Query private var products: [Products];
-    @Query private var defaults: [UserDefault];
+    @Query private var defaults: [UserChoices];
 
     @State var presentedSheet : Bool = false;
 
@@ -63,21 +63,23 @@ struct wishList: View {
                             .swipeActions {
                                 Button(action:
                                         {  context.delete(product)
+                                    let defaultUser = UserChoices(points: 0, onboardingViewed: true)
+                                    context.insert(defaultUser)
                                 }) {
                                     Label("", systemImage: "trash")
                                 }
                                 .tint(.red)
                             }
-//                            .swipeActions(edge: .leading) {
-//                                Button(action: {
-//                                    //                                removeTask(at: task)
-//                                    defaults[0].points = defaults[0].points +  1;
-//                                    try? context.save()
-//                                }) {
-//                                    Label("", systemImage: "gift")
-//                                }
-//                                .tint(.yellow)
-//                            }
+                            .swipeActions(edge: .leading) {
+                                Button(action: {
+                                    //                                removeTask(at: task)
+                                    defaults[0].points = defaults[0].points +  1;
+                                    try? context.save()
+                                }) {
+                                    Label("", systemImage: "gift")
+                                }
+                                .tint(.yellow)
+                            }
 
                             VStack{
                                 Button{

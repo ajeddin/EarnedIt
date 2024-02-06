@@ -10,13 +10,16 @@ import SwiftData
 struct toDoList: View {
     @Environment(\.modelContext) private var context
     @Query private var tasks: [Tasks];
+    @Query private var defaults: [UserChoices];
+    @State private var isEditing: Bool = false
+
     @Environment(\.colorScheme) var colorScheme
     @State private var addedTasks: [String: [String]] = ["Easy": [], "Medium": [], "Hard": []]
-    @State var presentedSheet : Bool = false;
     @State private var newTask1 = ""
     @State private var newTask2 = ""
     @State private var newTask3 = ""
     @State private var points: Int = 0
+    @State var presentedSheet = false
 
 
     
@@ -24,46 +27,13 @@ struct toDoList: View {
         ZStack{
             VStack{
                 WavePage(buttonShwn:false,height1: 160 , height2: 190, isOn: true,duration1: 20,duration2: 25, showingText: true, headerText: "To-Do List",isPresented:$presentedSheet)
-            }.sheet(isPresented: $presentedSheet, content: {
-
-                toDoListSheet()
-            })
+            }
             VStack{
                 NavigationStack{
                     List {
-//                        if tasks.filter({ $0.isChecked }).count > 0 {
-//                        Section(header: Text("Favorites").foregroundColor(.green).bold().font(.system(size: 16))) {
-//                            
-//                            
-//                            ForEach(tasks) { task in
-//                                
-//                                if (task.isChecked == true){
-//                                    
-//                                    HStack{
-//                                        Text(task.taskText)
-//                                        Spacer()
-//                                        Button (action: {} ) {
-//                                            Label("", systemImage: "star")
-//                                        }
-//                                        
-//                                        Button (action: {} ) {
-//                                            Label("", systemImage: "circle")
-//                                        }
-//                                        
-//                                        
-//                                    }.swipeActions {
-//                                        Button(action:
-//                                                {context.delete(task)
-//                                        }) {
-//                                            Label("", systemImage: "trash")
-//                                        }
-//                                        .tint(.red)
-//                                    }}
-//                                
-//                            }
-//                            
-//                        }
-//                    }
+//                        if tasks.filter({ $0 }).count > 0 {}
+                        
+
                         Section(header: Text("Simple").foregroundColor(.green).bold().font(.system(size: 16))) {
                             
                             
@@ -76,7 +46,7 @@ struct toDoList: View {
                                            try? context.save()
                                             
                                             if task.isChecked {
-                                                points += 5
+                                                defaults[0].points  += 5
 
                                             }
                                             
@@ -84,7 +54,8 @@ struct toDoList: View {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
                                         }.buttonStyle(.plain)
                                             .tint(.clear)
-                                        Text(task.taskText)
+                                            Text(task.taskText)
+                                        
                                         Spacer()
                                         Button (action: {
                                             task.isFav.toggle()
@@ -98,6 +69,8 @@ struct toDoList: View {
                                         
                                         
                                     }
+                                  
+                         
                                     .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                                     .swipeActions {
                                         Button(action:
@@ -108,7 +81,7 @@ struct toDoList: View {
                                         .tint(.red)
                                     }}
                                 
-                                
+                            
                             }
                             HStack {
                                 TextField("Add Task", text: $newTask1
@@ -119,6 +92,7 @@ struct toDoList: View {
                                         addNewTask(task: Tasks(taskText: newTask1, taskPoints: 5))
                                             newTask1 = ""
                                     }
+                               
 
                             }
                             
@@ -136,7 +110,7 @@ struct toDoList: View {
                                            try? context.save()
                                             
                                             if task.isChecked {
-                                                points += 10
+                                                defaults[0].points += 10
                                             }
                                         } ) {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
@@ -194,7 +168,7 @@ struct toDoList: View {
                                            try? context.save()
                                             
                                             if task.isChecked {
-                                                points += 20
+                                                defaults[0].points  += 20
 
                                             }
                                             
@@ -247,15 +221,23 @@ struct toDoList: View {
                                         newTask3 = ""
                                     }}
 
-                }
+                }.tint(.clear)
                     .scrollContentBackground(.hidden)
                     
 //                    .onSubmit{(addNewTask(section: "hard"))
-                    }.tint(.clear)
+                    }
+//                    .background(Color.clear)
+//                    .listRowBackground(Color.clear)
 
-                }.tint(.clear)
+                    
+                    
+                    .listStyle(PlainListStyle())
+//.tint(.clear)
+
+                }
+//                .tint(.clear)
                 
-            }.padding(.top,200)
+            }.padding(.top,200).tint(.clear)
         }     }
     
     func addNewTask(task: Tasks) {
@@ -269,13 +251,7 @@ struct toDoList: View {
     }
 }
         
-    struct toDoListSheet: View{
-        var body: some View{
-            
-            Text("Hello TODO")
-        }
-    }
-            
+     
 
 
     #Preview {
