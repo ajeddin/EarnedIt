@@ -21,12 +21,13 @@ struct toDoList: View {
     @State private var points: Int = 0
     @State var presentedSheet = false
 
+    @Environment(\.accessibilityReduceMotion) var ReduceMotion;
 
     
     var body: some View {
         ZStack{
             VStack{
-                WavePage(buttonShwn:false,height1: 160 , height2: 190, isOn: true,duration1: 20,duration2: 25, showingText: true, headerText: "To-Do List",isPresented:$presentedSheet)
+                WavePage(buttonShwn:false,height1: 175 , height2: 210, isOn: !ReduceMotion,duration1: 20,duration2: 25, showingText: true, headerText: "To-Do List",isPresented:$presentedSheet)
             }
             VStack{
                 NavigationStack{
@@ -221,21 +222,20 @@ struct toDoList: View {
                                         newTask3 = ""
                                     }}
 
-                }.tint(.clear)
-                    .scrollContentBackground(.hidden)
+                }
                     
 //                    .onSubmit{(addNewTask(section: "hard"))
-                    }
+                    }.scrollContentBackground(.hidden)
 //                    .background(Color.clear)
 //                    .listRowBackground(Color.clear)
 
                     
                     
-                    .listStyle(PlainListStyle())
-//.tint(.clear)
+//                    .listStyle(PlainListStyle())
+.tint(.clear)
 
                 }
-//                .tint(.clear)
+                .tint(.clear)
                 
             }.padding(.top,200).tint(.clear)
         }     }

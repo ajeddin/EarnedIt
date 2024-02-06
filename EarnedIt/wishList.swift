@@ -26,85 +26,97 @@ struct wishList: View {
         ZStack{
             WavePage(buttonShwn:true,height1: 175 , height2: 210, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Wishlist",isPresented:$presentedSheet)
 
-            
-            VStack{
-                List{
-                    Section{
-//                        ForEach(products.indices, id: \.self) { product in
-                        ForEach(products) { product in
-                            HStack {
-                                
-                                AsyncImage(url: URL(string: product.imageURL)) { phase in
-                                    if let image = phase.image {
-                                        image
-                                            .resizable()
-                                            .scaledToFit()
-                                    } else if phase.error != nil {
-                                        Text("There was an error loading the image.")
-                                    } else {
-                                        ProgressView()
-                                    }
-                                }
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                Text(product.productName).padding(.leading,10).bold()
-                            }
-                            
-                            .swipeActions {
-                                Button(action:
-                                        {  context.delete(product)
-                                    try? context.save()
-                                }) {
-                                    Label("", systemImage: "trash")
-                                }
-                                .tint(.red)
-                            
-                        }
-//                            .swipeActions(edge: .leading) {
-//                                Button(action: {
-//                                    //                                removeTask(at: task)
-//                                    defaults[0].points = defaults[0].points +  1;
-//                                    try? context.save()
-//                                }) {
-//                                    Label("", systemImage: "gift")
-//                                }
-//                                .tint(.yellow)
-//                            }
+            if products.filter({ $0.isRedeemed == false }).count == 0 {
+                VStack(alignment: .center){
+                    Image("noProducts").resizable().scaledToFit().frame(width: 100)
+                    Text("Create your wishlist")
+                    Text("Tap the plus button to get started")
+                    
+                    
+                } }else{
+                    VStack{
 
-                            HStack{
-                                
-                        Spacer()
-                                if(defaults[0].points >= product.price){
-                                    
-                                    Button{
-                                        defaults[0].points =   defaults[0].points - product.price
-                                        try? context.save()
-                                    }
-                                label: {
-                                    Text("Redeem").frame(alignment: .center).bold()
-                                }
-                                }
+                    List{
+                        Section{
+                            //                        ForEach(products.indices, id: \.self) { product in
+                            ForEach(products) { product in
+                                //                      if product.filter({ $0 }).isRedeemed = false {}
+                                if product.isRedeemed {}
                                 else{
-                                    Text("\(defaults[0].points)/\(product.price)").bold()
-                                
-                            }
-                                Spacer()
-
-                            }
-                        }
-//                                            .onDelete(perform: { indexSet in
-//                                                for index in indexSet{
-//                                                    context.delete(products[index])
-//                                                } })
-                        
-                    }header: {
-                        
-                        Text("Products")
-                    } }.scrollContentBackground(.hidden)
-
-                
-            }.padding(.top,180).cornerRadius(25)
-            
+                                    HStack {
+                                        
+                                        AsyncImage(url: URL(string: product.imageURL)) { phase in
+                                            if let image = phase.image {
+                                                image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                            } else if phase.error != nil {
+                                                Text("There was an error loading the image.")
+                                            } else {
+                                                ProgressView()
+                                            }
+                                        }
+                                        .scaledToFit()
+                                        .frame(width: 80, height: 80)
+                                        Text(product.productName).padding(.leading,10).bold()
+                                    }
+                                    
+                                    .swipeActions {
+                                        Button(action:
+                                                {  context.delete(product)
+                                            try? context.save()
+                                        }) {
+                                            Label("", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                        
+                                    }
+                                    //                            .swipeActions(edge: .leading) {
+                                    //                                Button(action: {
+                                    //                                    //                                removeTask(at: task)
+                                    //                                    defaults[0].points = defaults[0].points +  1;
+                                    //                                    try? context.save()
+                                    //                                }) {
+                                    //                                    Label("", systemImage: "gift")
+                                    //                                }
+                                    //                                .tint(.yellow)
+                                    //                            }
+                                    
+                                    HStack{
+                                        
+                                        Spacer()
+                                        if(defaults[0].points >= product.price){
+                                            
+                                            Button{
+                                                defaults[0].points =   defaults[0].points - product.price
+                                                product.isRedeemed = true
+                                                try? context.save()
+                                            }
+                                        label: {
+                                            Text("Redeem").frame(alignment: .center).bold()
+                                        }
+                                        }
+                                        else{
+                                            Text("\(defaults[0].points)/\(product.price)").bold()
+                                            
+                                        }
+                                        Spacer()
+                                        
+                                    }
+                                }}
+                            //                                            .onDelete(perform: { indexSet in
+                            //                                                for index in indexSet{
+                            //                                                    context.delete(products[index])
+                            //                                                } })
+                            
+                        }header: {
+                            
+                            Text("Products")
+                        } }.scrollContentBackground(.hidden)
+                    
+                    
+                }.padding(.top,180).cornerRadius(25)
+            }
 
             
             
