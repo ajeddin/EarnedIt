@@ -34,6 +34,7 @@
 		C12435912B6934C3007588A1 /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12435902B6934C3007588A1 /* OnboardingData.swift */; };
 		C12435932B69357D007588A1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12435922B69357D007588A1 /* OnboardingView.swift */; };
 		C153F39E2B73CA5B00E48764 /* toDoListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C153F39D2B73CA5B00E48764 /* toDoListViews.swift */; };
+		C153F3A12B76866200E48764 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C153F3A02B76866200E48764 /* ConfettiSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C153F3A12B76866200E48764 /* ConfettiSwiftUI in Frameworks */,
 				21D748BD2B6B50C900E9A4EA /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +201,7 @@
 			name = EarnedIt;
 			packageProductDependencies = (
 				21D748BC2B6B50C900E9A4EA /* SwiftSoup */,
+				C153F3A02B76866200E48764 /* ConfettiSwiftUI */,
 			);
 			productName = EarnedIt;
 			productReference = 210E8CFA2B692F39000D5549 /* EarnedIt.app */;
@@ -253,6 +256,7 @@
 			mainGroup = 210E8CF12B692F39000D5549;
 			packageReferences = (
 				21D748BB2B6B50C900E9A4EA /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				C153F39F2B7684F700E48764 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = 210E8CFB2B692F39000D5549 /* Products */;
 			projectDirPath = "";
@@ -471,7 +475,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnedIt/Preview Content\"";
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EarnedIt/Info.plist;
@@ -503,7 +507,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnedIt/Preview Content\"";
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EarnedIt/Info.plist;
@@ -618,6 +622,14 @@
 				minimumVersion = 2.7.0;
 			};
 		};
+		C153F39F2B7684F700E48764 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -630,6 +642,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 21D748BB2B6B50C900E9A4EA /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		C153F3A02B76866200E48764 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C153F39F2B7684F700E48764 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
