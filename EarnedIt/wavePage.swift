@@ -37,6 +37,8 @@ struct Wave: Shape {
 
 
 struct WavePage: View {
+    let haptic = UIImpactFeedbackGenerator(style: .medium)
+
     @Environment(\.modelContext) private var context
     @Query private var defaults: [UserChoices];
     var buttonShwn: Bool
@@ -105,14 +107,17 @@ struct WavePage: View {
 
 
                                         }else{
-                                            Text("Points: \(defaults[0].points)")                                            .font(.title2).foregroundColor(Color("ForegroundColor"))
+                                            Text("Points: \(defaults[0].points)")  
+                                                .font(.title2).foregroundColor(Color("ForegroundColor"))
 }//                                                                                .padding(.leading,30)
                                         //                                        .padding(.top,50)
                                     }
                                     .padding(.leading,20)
                                     Spacer()
                                     if (buttonShwn){
-                                        Button(action: {isPresented=true}) {
+                                        Button(action: {isPresented=true
+                                            haptic.impactOccurred(intensity: 0.9)
+                                        }) {
                                             Image(systemName: "plus")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
@@ -121,6 +126,7 @@ struct WavePage: View {
                                                 .padding(16)
                                                 .background(Color.white)
                                                 .clipShape(Circle())
+                                            
                                         }
 //                                        .padding([.top,.trailing],20)
                                         .frame(alignment: .trailing)

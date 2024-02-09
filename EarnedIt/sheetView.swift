@@ -25,6 +25,10 @@ struct wishListSheet: View{
     @State var response : String = "";
     @State var price : Int = 0
 //    @State var isValidLink : Bool = false
+    let haptic = UINotificationFeedbackGenerator()
+    let haptic2 = UIImpactFeedbackGenerator(style: .heavy)
+
+    
     @Environment(\.dismiss) var dismiss
     var body: some View{
         
@@ -49,7 +53,10 @@ struct wishListSheet: View{
                 
                 Button(action: {
                     if (price <= 0){
+                        haptic.notificationOccurred(.error)
                     }else{
+                        haptic.notificationOccurred(.success)
+
                         if let range = link.range(of: "https") {
                             var result = String(link[range.lowerBound...])
                             result = result.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -85,14 +92,7 @@ struct wishListSheet: View{
                         }}
                     
                 }) {
-//                Image(systemName: "plus")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 19, height: 19)
-//                    .foregroundColor(Color("AccentColor"))
-//                    .padding(15)
-//                    .background(Color.white)
-//                    .clipShape(Circle())
+
                     Text("Done").foregroundColor(Color("AccentColor"))
             }
   
@@ -113,8 +113,12 @@ struct wishListSheet: View{
                     
                 }.padding(25)
                 Button{
-                    if (itemName.isEmpty || price <= 0){}
+                    if (itemName.isEmpty || price <= 0){
+                        haptic.notificationOccurred(.error)
+
+                    }
                     else{
+                        haptic.notificationOccurred(.success)
                         let product = Products(imageURL: "https://img.freepik.com/free-photo/cardboard-box_144627-20326.jpg?w=1480&t=st=1707146075~exp=1707146675~hmac=dd95c4723f0a52fee3a5b590d4e8c16b8c10fb4ced4cd19af3932bc0aa5510e5", productName: itemName, price: price, productLink: link)
                         context.insert(product)
                         try? context.save()
