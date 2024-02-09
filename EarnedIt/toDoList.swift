@@ -22,7 +22,10 @@ struct toDoList: View {
     @State private var newTask3 = ""
     @State private var points: Int = 0
     @State var presentedSheet = false
+    @State private var animationAmount = 1.0
 
+    
+    
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
 
     
@@ -40,30 +43,35 @@ struct toDoList: View {
                             
                             
 //                            ForEach(tasks.sorted(by: { $0.isFav && !$1.isFav })) { task in
-                            ForEach(tasks.filter { !$0.isChecked && $0.taskPoints == 5 }.sorted(by: { $0.isFav && !$1.isFav })) { task in
+                            ForEach(tasks.sorted(by: { $0.isFav && !$1.isFav })) { task in
 
                                 if (task.taskPoints == 5){
                                     
                                     HStack{
                                         Button (action: {
-                                            
-                                            
-                                            // if bookmarked
-                                            //     we should be able to check and uncheck
-                                            
-                                            // if not bookmarked
-                                            //     delete
-                                            
-                                            
-                                            task.isChecked.toggle()
+                                            withAnimation {
+                                                    task.isChecked.toggle()
+                                                }
                                             try? context.save()
                                             
+                                            if task.isFav {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                                    withAnimation {
+                                                        task.isChecked.toggle()
+                                                    }
+                                                    try? context.save()
+                                                }}
+                                            
                                             if task.isChecked {
-                                                defaults[0].points  += 5
-                                            
-                                            
+                                                defaults[0].points += 5
+                                                
+                                                withAnimation { if task.isChecked && !task.isFav {
+                                                    task.isChecked.toggle()
+                                                    context.delete(task)
+                                                    
+                                                }
+                                                }
                                             }
-                                            
                                         } ) {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
                                         }.buttonStyle(.plain)
@@ -79,6 +87,7 @@ struct toDoList: View {
                                             
                                         }.buttonStyle(.plain)
                                             .tint(.clear)
+                                        
                                         
                                     }
                                     
@@ -121,19 +130,12 @@ struct toDoList: View {
                                             if task.isChecked {
                                                 defaults[0].points += 10
                                                 
-                                                if task.isChecked && !task.isFav {
-//                                                    withAnimation { context.delete(task)}
-//                                                    context.delete(task)
-//                                                        .animation(.easeInOut)
-                                                    withAnimation {
-                                                            context.delete(task)
-                                                        }
-
+                                                withAnimation { if task.isChecked && !task.isFav {
+                                                    task.isChecked.toggle()
+                                                    context.delete(task)
                                                     
                                                 }
-                                                
-                                            
-                                            
+                                                }
                                             }
                                         } ) {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
@@ -179,14 +181,29 @@ struct toDoList: View {
                                     
                                     HStack{
                                         Button (action: {
-                                            task.isChecked.toggle()
+                                            withAnimation {
+                                                    task.isChecked.toggle()
+                                                }
                                             try? context.save()
                                             
-                                            if task.isChecked {
-                                                defaults[0].points  += 20
-                                                
-                                            }
+                                            if task.isFav {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                                    withAnimation {
+                                                        task.isChecked.toggle()
+                                                    }
+                                                    try? context.save()
+                                                }}
                                             
+                                            if task.isChecked {
+                                                defaults[0].points += 20
+                                                
+                                                withAnimation { if task.isChecked && !task.isFav {
+                                                    task.isChecked.toggle()
+                                                    context.delete(task)
+                                                    
+                                                }
+                                                }
+                                            }
                                         } ) {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
                                         }
@@ -233,8 +250,10 @@ struct toDoList: View {
     
     var addTaskField3: some View {
         HStack {
-           Image(systemName: "plus.app")
-            
+            Spacer(minLength: 4)
+           Image(systemName: "plus.circle")
+                .foregroundColor(Color("AccentColor"))
+
             TextField("Add Task", text: $newTask3)
                 .bold()
                 .foregroundColor(Color("ForegroundColor"))
@@ -248,8 +267,10 @@ struct toDoList: View {
     
     var addTaskField2: some View {
         HStack {
-           Image(systemName: "plus.app")
-            
+            Spacer(minLength: 4)
+           Image(systemName: "plus.circle")
+                .foregroundColor(Color("AccentColor"))
+
             TextField("Add Task", text: $newTask2)
                 .bold()
                 .foregroundColor(Color("ForegroundColor"))
@@ -263,7 +284,9 @@ struct toDoList: View {
     
     var addTaskField1: some View {
         HStack {
-           Image(systemName: "plus.app")
+            Spacer(minLength: 4)
+           Image(systemName: "plus.circle")
+                .foregroundColor(Color("AccentColor"))
             
             TextField("Add Task", text: $newTask1)
                 .bold()
