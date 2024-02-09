@@ -5,6 +5,8 @@
 //  Created by Abdulaziz Jamaleddin on 1/30/24.
 //
 
+// take components out and make them computed properties in the same view.
+// abstract a view whose pattern is used multiple times and make a detail view for it
 import SwiftUI
 import SwiftData
 struct toDoList: View {
@@ -20,7 +22,10 @@ struct toDoList: View {
     @State private var newTask3 = ""
     @State private var points: Int = 0
     @State var presentedSheet = false
+    @State private var animationAmount = 1.0
 
+    
+    
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
 
     
@@ -30,49 +35,63 @@ struct toDoList: View {
                 WavePage(buttonShwn:false,height1: 160 , height2: 192, isOn: !ReduceMotion,duration1: 20,duration2: 25, showingText: true, headerText: "To-Do List",isPresented:$presentedSheet)
             }
             VStack{
-                NavigationStack{
-                    List {
-//                        if tasks.filter({ $0 }).count > 0 {}
+                List {
+                    //                        if tasks.filter({ $0 }).count > 0 {}
+                    Group{
                         
-
                         Section(header: Text("Simple").foregroundColor(.green).bold().font(.system(size: 16))) {
                             
                             
+//                            ForEach(tasks.sorted(by: { $0.isFav && !$1.isFav })) { task in
                             ForEach(tasks.sorted(by: { $0.isFav && !$1.isFav })) { task in
+
                                 if (task.taskPoints == 5){
                                     
                                     HStack{
                                         Button (action: {
-                                            task.isChecked.toggle()
-                                           try? context.save()
+                                            withAnimation {
+                                                    task.isChecked.toggle()
+                                                }
+                                            try? context.save()
+                                            
+                                            if task.isFav {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                                    withAnimation {
+                                                        task.isChecked.toggle()
+                                                    }
+                                                    try? context.save()
+                                                }}
                                             
                                             if task.isChecked {
-                                                defaults[0].points  += 5
-
+                                                defaults[0].points += 5
+                                                
+                                                withAnimation { if task.isChecked && !task.isFav {
+                                                    task.isChecked.toggle()
+                                                    context.delete(task)
+                                                    
+                                                }
+                                                }
                                             }
-                                            
                                         } ) {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
                                         }.buttonStyle(.plain)
                                             .tint(.clear)
-                                            Text(task.taskText)
+                                        Text(task.taskText)
                                         
                                         Spacer()
                                         Button (action: {
                                             withAnimation {  task.isFav.toggle()}
-                                           try? context.save()
+                                            try? context.save()
                                         } ) {
                                             Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
-
+                                            
                                         }.buttonStyle(.plain)
                                             .tint(.clear)
                                         
                                         
-                                        
                                     }
-                                  
-                         
-                                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                                    
+                                    .foregroundColor(Color("ForegroundColor"))
                                     .swipeActions {
                                         Button(action:
                                                 {context.delete(task)
@@ -82,78 +101,76 @@ struct toDoList: View {
                                         .tint(.red)
                                     }}
                                 
-                            
+                                
                             }
-                            HStack {
-                                TextField("Add Task", text: $newTask1
-                                ).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-
-                                .disableAutocorrection(true)
-                                    .onSubmit() {
-                                        addNewTask(task: Tasks(taskText: newTask1, taskPoints: 5))
-                                            newTask1 = ""
-                                    }
-                               
-
-                            }
+                            addTaskField1
                             
                         }
                         
                         Section(header: Text("Moderate").foregroundColor(.yellow).bold().font(.system(size: 16))) {
-                          
-                                
-                                ForEach(tasks.sorted(by: { $0.isFav && !$1.isFav })){ task in
-                                    if (task.taskPoints == 10){
-                                        HStack{
-                                            Button (action: {
-                                                task.isChecked.toggle()
-                                                try? context.save()
-                                                
-                                                if task.isChecked {
-                                                    defaults[0].points += 10
+                            
+                            
+                            ForEach(tasks.sorted(by: { $0.isFav && !$1.isFav })){ task in
+                                if (task.taskPoints == 10){
+                                    HStack{
+                                        Button (action: {
+                                            withAnimation {
+                                                    task.isChecked.toggle()
                                                 }
-                                            } ) {
-                                                Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
-                                            }.buttonStyle(.plain)
-                                                .tint(.clear)
-                                            Text(task.taskText)
+                                            try? context.save()
                                             
-                                            Spacer()
+                                            if task.isFav {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                                    withAnimation {
+                                                        task.isChecked.toggle()
+                                                    }
+                                                    try? context.save()
+                                                }}
                                             
-                                            
-                                            Button (action: {
-                                                withAnimation {  task.isFav.toggle()}
-                                                try? context.save()
-                                            } ) {
-                                                Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
+                                            if task.isChecked {
+                                                defaults[0].points += 10
                                                 
-                                            }.foregroundColor(Color.white)
-                                            
-                                                .buttonStyle(.plain)
-                                                .tint(.clear)
-                                            
+                                                withAnimation { if task.isChecked && !task.isFav {
+                                                    task.isChecked.toggle()
+                                                    context.delete(task)
+                                                    
+                                                }
+                                                }
+                                            }
+                                        } ) {
+                                            Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
+                                        }.buttonStyle(.plain)
+                                            .tint(.clear)
+                                        Text(task.taskText)
+                                        
+                                        Spacer()
+                                        
+                                        
+                                        Button (action: {
+                                            withAnimation {  task.isFav.toggle()}
+                                            try? context.save()
+                                        } ) {
+                                            Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
                                             
                                         }
-                                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                                        .swipeActions {
-                                            Button(action:
-                                                    {context.delete(task)
-                                            }) {
-                                                Label("", systemImage: "trash")
-                                            }
-                                            .tint(.red)
-                                        }}
-                                    
+                                        
+                                        .tint(.clear)
+                                        
+                                        
+                                    }
+                                    .foregroundColor(Color("ForegroundColor"))
+                                    .swipeActions {
+                                        Button(action:
+                                                {context.delete(task)
+                                        }) {
+                                            Label("", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                    }
                                 }
-                            HStack {
-                                //                                Image(systemImage: "plus")
-                                TextField("Add Task", text: $newTask2
-                                ).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                                .disableAutocorrection(true)
-                                    .onSubmit() {
-                                        addNewTask(task: Tasks(taskText: newTask2, taskPoints: 10))
-                                        newTask2 = ""
-                                    }}
+                                
+                            }
+                            addTaskField2
 
                             
                             
@@ -165,42 +182,50 @@ struct toDoList: View {
                                     
                                     HStack{
                                         Button (action: {
-                                            task.isChecked.toggle()
-                                           try? context.save()
+                                            withAnimation {
+                                                    task.isChecked.toggle()
+                                                }
+                                            try? context.save()
+                                            
+                                            if task.isFav {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                                    withAnimation {
+                                                        task.isChecked.toggle()
+                                                    }
+                                                    try? context.save()
+                                                }}
                                             
                                             if task.isChecked {
-                                                defaults[0].points  += 20
-
+                                                defaults[0].points += 20
+                                                
+                                                withAnimation { if task.isChecked && !task.isFav {
+                                                    task.isChecked.toggle()
+                                                    context.delete(task)
+                                                    
+                                                }
+                                                }
                                             }
-                                            
                                         } ) {
                                             Label("", systemImage: task.isChecked ? "circle.fill" : "circle" )
                                         }
-//                                        .buttonStyle(.plain)
-                                            .tint(.clear)
+                                        .tint(.clear)
                                         
                                         Text(task.taskText)
                                         Spacer()
-                                        
                                         Button (action: {
-                                            withAnimation {  
+                                            withAnimation {
                                                 task.isFav.toggle()}
-                                           try? context.save()
+                                            try? context.save()
                                         } ) {
-                                                Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
-
+                                            Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
+                                            
                                         }
-//                                        .buttonStyle(.plain)
-                                            .tint(.clear)
-                                        
-                                        
-                                       
-                                        
+                                        .tint(.clear)
                                         
                                     }
-                                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                                    .foregroundColor(Color("ForegroundColor"))
                                     .buttonStyle(.plain)
-
+                                    
                                     .swipeActions {
                                         Button(action:
                                                 {context.delete(task)
@@ -211,37 +236,72 @@ struct toDoList: View {
                                     }}
                                 
                             }
+                            addTaskField3
                             
-                        
-                            HStack {
-                                TextField("Add Task", text: $newTask3
-                                ).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-
-                                .disableAutocorrection(true)
-                                    .onSubmit() {
-                                        addNewTask(task: Tasks(taskText: newTask3, taskPoints: 20))
-                                        newTask3 = ""
-                                    }}
-
-                }
-                    
-//                    .onSubmit{(addNewTask(section: "hard"))
-                    }.scrollContentBackground(.hidden)
-                        .background(Color.clear)
-
-//                    .background(Color.clear)
-//                    .listRowBackground(Color.clear)
-
-                    
-                    
-//                    .listStyle(PlainListStyle())
-.tint(.clear)
-
-                }
-                .tint(.clear)
+                        }
+                    }
+                }.scrollContentBackground(.hidden)
+                    .background(Color.clear)
+                    .tint(.clear)
                 
             }.padding(.top,200).tint(.clear)
-        }     }
+            
+        }
+    }
+    
+    var addTaskField3: some View {
+        HStack {
+            Spacer(minLength: 4)
+           Image(systemName: "plus.circle")
+                .foregroundColor(Color("AccentColor"))
+
+            TextField("Add Task", text: $newTask3)
+                .bold()
+                .foregroundColor(Color("ForegroundColor"))
+                .disableAutocorrection(true)
+                .onSubmit() {
+                    addNewTask(task: Tasks(taskText: newTask3, taskPoints: 20))
+                    newTask3 = ""
+                }
+        }
+    }
+    
+    var addTaskField2: some View {
+        HStack {
+            Spacer(minLength: 4)
+           Image(systemName: "plus.circle")
+                .foregroundColor(Color("AccentColor"))
+
+            TextField("Add Task", text: $newTask2)
+                .bold()
+                .foregroundColor(Color("ForegroundColor"))
+                .disableAutocorrection(true)
+                .onSubmit() {
+                    addNewTask(task: Tasks(taskText: newTask2, taskPoints: 10))
+                    newTask2 = ""
+                }
+        }
+    }
+    
+    var addTaskField1: some View {
+        HStack {
+            Spacer(minLength: 4)
+           Image(systemName: "plus.circle")
+                .foregroundColor(Color("AccentColor"))
+            
+            TextField("Add Task", text: $newTask1)
+                .bold()
+                .foregroundColor(Color("ForegroundColor"))
+                .disableAutocorrection(true)
+                .onSubmit() {
+                    addNewTask(task: Tasks(taskText: newTask1, taskPoints: 5))
+                    newTask1 = ""
+                }
+        }
+    }
+
+    
+    
     
     func addNewTask(task: Tasks) {
         task.taskText = task.taskText.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -252,6 +312,17 @@ struct toDoList: View {
         
        
     }
+    
+    func completeBookmarkedTask () {
+        
+    }
+    
+    func completeNonBookmarkedTask () {
+        
+    }
+    
+    
+    
 }
         
      
