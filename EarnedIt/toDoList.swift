@@ -183,8 +183,8 @@ struct toDoList: View {
                                     HStack{
                                         Button (action: {
                                             withAnimation {
-                                                    task.isChecked.toggle()
-                                                }
+                                                task.isChecked.toggle()
+                                            }
                                             try? context.save()
                                             
                                             if task.isFav {
@@ -198,11 +198,13 @@ struct toDoList: View {
                                             if task.isChecked {
                                                 defaults[0].points += 20
                                                 
-                                                withAnimation { if task.isChecked && !task.isFav {
-                                                    task.isChecked.toggle()
-                                                    context.delete(task)
+                                                withAnimation {
+                                                    if task.isChecked && !task.isFav {
+                                                        task.isChecked.toggle()
+                                                        
+                                                        context.delete(task)
+                                                    }
                                                     
-                                                }
                                                 }
                                             }
                                         } ) {
@@ -243,6 +245,7 @@ struct toDoList: View {
                 }.scrollContentBackground(.hidden)
                     .background(Color.clear)
                     .tint(.clear)
+                    .animation(.default, value: tasks)
                 
             }.padding(.top,200).tint(.clear)
             
