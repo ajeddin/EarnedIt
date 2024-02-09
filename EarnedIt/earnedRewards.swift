@@ -10,7 +10,8 @@ import SwiftData
 struct earnedRewards: View {
     @Environment(\.modelContext) private var context
     @Query private var products: [Products];
-    
+    let haptic2 = UIImpactFeedbackGenerator(style: .heavy)
+
     @State var presentedSheet : Bool = false;
     
     
@@ -59,7 +60,8 @@ struct earnedRewards: View {
                                         }
                                         .swipeActions {
                                             Button(action:
-                                                    {  context.delete(product)
+                                                    { haptic2.impactOccurred(intensity: 1)
+                                                context.delete(product)
                                                 try? context.save()
                                             }) {
                                                 Label("", systemImage: "trash")
