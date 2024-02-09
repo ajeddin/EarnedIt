@@ -18,16 +18,46 @@
 		210E8D142B69BDB1000D5549 /* wishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E8D132B69BDB1000D5549 /* wishList.swift */; };
 		210E8D162B69BDF2000D5549 /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E8D152B69BDF2000D5549 /* tabView.swift */; };
 		210E8D182B69FC9E000D5549 /* viewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210E8D172B69FC9E000D5549 /* viewController.swift */; };
+		217A92752B73DA470068EE97 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217A92742B73DA470068EE97 /* ShareViewController.swift */; };
+		217A92782B73DA470068EE97 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 217A92762B73DA470068EE97 /* MainInterface.storyboard */; };
+		217A927C2B73DA470068EE97 /* EarnedItShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 217A92722B73DA470068EE97 /* EarnedItShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		217A92812B73E0E60068EE97 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217A92802B73E0E60068EE97 /* functions.swift */; };
+		217A92862B7405210068EE97 /* modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D748BE2B6B574000E9A4EA /* modals.swift */; };
+		217A92892B7421940068EE97 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 217A92882B7421940068EE97 /* SwiftSoup */; };
 		219180852B7149A20072AF29 /* SpalshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219180842B7149A20072AF29 /* SpalshView.swift */; };
+		21A658A62B766E2000B9C8E3 /* modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D748BE2B6B574000E9A4EA /* modals.swift */; };
 		21ADFD182B6C74B00085D1F7 /* sheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADFD172B6C74B00085D1F7 /* sheetView.swift */; };
 		21D748BA2B6B508500E9A4EA /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D748B92B6B508500E9A4EA /* functions.swift */; };
 		21D748BD2B6B50C900E9A4EA /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 21D748BC2B6B50C900E9A4EA /* SwiftSoup */; };
-		21D748BF2B6B574000E9A4EA /* modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D748BE2B6B574000E9A4EA /* modals.swift */; };
 		21DC23EB2B729BF900B0685A /* redeemedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DC23EA2B729BF900B0685A /* redeemedView.swift */; };
 		C124358F2B6931AA007588A1 /* onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C124358E2B6931AA007588A1 /* onboarding.swift */; };
 		C12435912B6934C3007588A1 /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12435902B6934C3007588A1 /* OnboardingData.swift */; };
 		C12435932B69357D007588A1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12435922B69357D007588A1 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		217A927A2B73DA470068EE97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 210E8CF22B692F39000D5549 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 217A92712B73DA470068EE97;
+			remoteInfo = EarnedItShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		21F6BCFD2B73D6250021A0DB /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				217A927C2B73DA470068EE97 /* EarnedItShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		210E8CFA2B692F39000D5549 /* EarnedIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarnedIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +74,12 @@
 		210E8D172B69FC9E000D5549 /* viewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
 		214246582B6BE3BD00C8CB0B /* EarnedIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EarnedIt.entitlements; sourceTree = "<group>"; };
 		214246592B6BE3FD00C8CB0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		217A92722B73DA470068EE97 /* EarnedItShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EarnedItShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		217A92742B73DA470068EE97 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		217A92772B73DA470068EE97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		217A92792B73DA470068EE97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		217A92802B73E0E60068EE97 /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
+		217A928A2B7467E60068EE97 /* EarnedItShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EarnedItShare.entitlements; sourceTree = "<group>"; };
 		219180842B7149A20072AF29 /* SpalshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpalshView.swift; sourceTree = "<group>"; };
 		21ADFD172B6C74B00085D1F7 /* sheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sheetView.swift; sourceTree = "<group>"; };
 		21D748B92B6B508500E9A4EA /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
@@ -63,14 +99,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		217A926F2B73DA470068EE97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				217A92892B7421940068EE97 /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		210E8CF12B692F39000D5549 = {
 			isa = PBXGroup;
 			children = (
-				21DC23EA2B729BF900B0685A /* redeemedView.swift */,
 				210E8CFC2B692F39000D5549 /* EarnedIt */,
+				217A92732B73DA470068EE97 /* EarnedItShare */,
 				210E8CFB2B692F39000D5549 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				210E8CFA2B692F39000D5549 /* EarnedIt.app */,
+				217A92722B73DA470068EE97 /* EarnedItShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				214246592B6BE3FD00C8CB0B /* Info.plist */,
+				21DC23EA2B729BF900B0685A /* redeemedView.swift */,
 				214246582B6BE3BD00C8CB0B /* EarnedIt.entitlements */,
 				21D748B92B6B508500E9A4EA /* functions.swift */,
 				210E8D172B69FC9E000D5549 /* viewController.swift */,
@@ -118,6 +164,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		217A92732B73DA470068EE97 /* EarnedItShare */ = {
+			isa = PBXGroup;
+			children = (
+				217A928A2B7467E60068EE97 /* EarnedItShare.entitlements */,
+				217A92742B73DA470068EE97 /* ShareViewController.swift */,
+				217A92762B73DA470068EE97 /* MainInterface.storyboard */,
+				217A92792B73DA470068EE97 /* Info.plist */,
+				217A92802B73E0E60068EE97 /* functions.swift */,
+			);
+			path = EarnedItShare;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,10 +186,12 @@
 				210E8CF62B692F39000D5549 /* Sources */,
 				210E8CF72B692F39000D5549 /* Frameworks */,
 				210E8CF82B692F39000D5549 /* Resources */,
+				21F6BCFD2B73D6250021A0DB /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				217A927B2B73DA470068EE97 /* PBXTargetDependency */,
 			);
 			name = EarnedIt;
 			packageProductDependencies = (
@@ -140,6 +200,26 @@
 			productName = EarnedIt;
 			productReference = 210E8CFA2B692F39000D5549 /* EarnedIt.app */;
 			productType = "com.apple.product-type.application";
+		};
+		217A92712B73DA470068EE97 /* EarnedItShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 217A927D2B73DA470068EE97 /* Build configuration list for PBXNativeTarget "EarnedItShare" */;
+			buildPhases = (
+				217A926E2B73DA470068EE97 /* Sources */,
+				217A926F2B73DA470068EE97 /* Frameworks */,
+				217A92702B73DA470068EE97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EarnedItShare;
+			packageProductDependencies = (
+				217A92882B7421940068EE97 /* SwiftSoup */,
+			);
+			productName = EarnedItShare;
+			productReference = 217A92722B73DA470068EE97 /* EarnedItShare.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -152,6 +232,9 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					210E8CF92B692F39000D5549 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					217A92712B73DA470068EE97 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
@@ -173,6 +256,7 @@
 			projectRoot = "";
 			targets = (
 				210E8CF92B692F39000D5549 /* EarnedIt */,
+				217A92712B73DA470068EE97 /* EarnedItShare */,
 			);
 		};
 /* End PBXProject section */
@@ -184,6 +268,14 @@
 			files = (
 				210E8D052B692F3A000D5549 /* Preview Assets.xcassets in Resources */,
 				210E8D022B692F3A000D5549 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		217A92702B73DA470068EE97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				217A92782B73DA470068EE97 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,16 +297,45 @@
 				210E8D122B69BD78000D5549 /* earnedRewards.swift in Sources */,
 				C12435912B6934C3007588A1 /* OnboardingData.swift in Sources */,
 				210E8D002B692F39000D5549 /* ContentView.swift in Sources */,
+				217A92862B7405210068EE97 /* modals.swift in Sources */,
 				21ADFD182B6C74B00085D1F7 /* sheetView.swift in Sources */,
 				C124358F2B6931AA007588A1 /* onboarding.swift in Sources */,
-				21D748BF2B6B574000E9A4EA /* modals.swift in Sources */,
 				C12435932B69357D007588A1 /* OnboardingView.swift in Sources */,
 				210E8CFE2B692F39000D5549 /* EarnedItApp.swift in Sources */,
 				21DC23EB2B729BF900B0685A /* redeemedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		217A926E2B73DA470068EE97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				217A92752B73DA470068EE97 /* ShareViewController.swift in Sources */,
+				217A92812B73E0E60068EE97 /* functions.swift in Sources */,
+				21A658A62B766E2000B9C8E3 /* modals.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		217A927B2B73DA470068EE97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 217A92712B73DA470068EE97 /* EarnedItShare */;
+			targetProxy = 217A927A2B73DA470068EE97 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		217A92762B73DA470068EE97 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				217A92772B73DA470068EE97 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		210E8D062B692F3A000D5549 /* Debug */ = {
@@ -339,6 +460,7 @@
 		210E8D092B692F3A000D5549 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EarnedIt/EarnedIt.entitlements;
@@ -370,6 +492,7 @@
 		210E8D0A2B692F3A000D5549 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EarnedIt/EarnedIt.entitlements;
@@ -398,6 +521,58 @@
 			};
 			name = Release;
 		};
+		217A927E2B73DA470068EE97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = EarnedItShare/EarnedItShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42NWXG687M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EarnedItShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EarnedItShare;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.EarnedIt.EarnedItShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		217A927F2B73DA470068EE97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = EarnedItShare/EarnedItShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42NWXG687M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EarnedItShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EarnedItShare;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.EarnedIt.EarnedItShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -419,6 +594,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		217A927D2B73DA470068EE97 /* Build configuration list for PBXNativeTarget "EarnedItShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				217A927E2B73DA470068EE97 /* Debug */,
+				217A927F2B73DA470068EE97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -433,6 +617,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		217A92882B7421940068EE97 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21D748BB2B6B50C900E9A4EA /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
 		21D748BC2B6B50C900E9A4EA /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 21D748BB2B6B50C900E9A4EA /* XCRemoteSwiftPackageReference "SwiftSoup" */;

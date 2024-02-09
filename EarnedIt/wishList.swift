@@ -13,7 +13,8 @@ struct wishList: View {
     @Query private var defaults: [UserChoices];
     @State var userPoints : Int = 0
     @State var productPrice : Int = 0
-    
+    let haptic2 = UIImpactFeedbackGenerator(style: .heavy)
+
     @State var presentedSheet : Bool = false;
 
 
@@ -27,10 +28,12 @@ struct wishList: View {
             WavePage(buttonShwn:true,height1: 175 , height2: 210, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Wishlist",isPresented:$presentedSheet)
 
             if products.filter({ $0.isRedeemed == false }).count == 0 {
-                VStack(alignment: .center){
-                    Image("noProducts").resizable().scaledToFit().frame(width: 100)
-                    Text("Create your wishlist")
-                    Text("Tap the plus button to get started")
+                if(!presentedSheet){
+                    VStack(alignment: .center){
+                        Image("noProducts").resizable().scaledToFit().frame(width: 100)
+                        Text("Create your wishlist")
+                        Text("Tap the plus button to get started")
+                    }
                     
                     
                 } }else{
@@ -65,6 +68,7 @@ struct wishList: View {
                                         Button(action:
                                                 {  context.delete(product)
                                             try? context.save()
+                                            haptic2.impactOccurred(intensity: 1)
                                         }) {
                                             Label("", systemImage: "trash")
                                         }
@@ -124,7 +128,9 @@ struct wishList: View {
                 wishListSheet()  .presentationDetents([.medium])
                 .presentationDragIndicator(.hidden)
                 
-        })
+        }
+        )
+        .animation(.bouncy)
         
       
         

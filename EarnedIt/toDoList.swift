@@ -146,6 +146,7 @@ struct toDoList: View {
                                     
                                 }
                             HStack {
+                                //                                Image(systemImage: "plus")
                                 TextField("Add Task", text: $newTask2
                                 ).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                                 .disableAutocorrection(true)
