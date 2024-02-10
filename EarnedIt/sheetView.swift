@@ -43,6 +43,8 @@ struct wishListSheet: View{
 //                Text("Please paste amazon link here:")
                 VStack{
                     HStack{
+                        Link("Visit Our Site", destination: URL(string: "https://www.amazon.com")!)
+
                         TextField("Paste Link Here", text: $link).disableAutocorrection(true)
                         PasteButton(payloadType: String.self) { strings in
                             link = strings[0]
