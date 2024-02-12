@@ -129,7 +129,7 @@ struct wishList: View {
             
             
         }.sheet(isPresented: $presentedSheet, content: {
-            wishListSheet().presentationDetents([.medium])
+            wishListSheet().presentationDetents([.height(330)])
                 .presentationDragIndicator(.hidden)
             
         }

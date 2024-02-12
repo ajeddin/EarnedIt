@@ -51,11 +51,13 @@ fileprivate struct  SheetView: View {
         VStack{
                 VStack{
                     HStack{
-                        Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)))
+                        Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
                     }
-                    TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad)
+                    TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad).foregroundColor(Color("ForegroundColor") )
                     
-                }.padding(25)
+                }
+                .padding(25)
+                
 //                    .background(Color.white.opa city(0.7))
                 
             
@@ -112,7 +114,8 @@ fileprivate struct  SheetView: View {
                     }
                 }
             
-            } label: {Text("Done")}.buttonStyle(.borderedProminent)
+            } label: {Text("Done").foregroundColor(Color("ForegroundColor"))
+            }.buttonStyle(.borderedProminent)
 
             
             
@@ -123,8 +126,8 @@ fileprivate struct  SheetView: View {
             extract()
             
             
-        })
-            .background(Color("ForegroundColor"))
+            }).padding(20)
+            .background(Color("BackgroundColor")).cornerRadius(25)
     }
 
     

@@ -37,19 +37,28 @@ struct earnedRewards: View {
                                     if product.isRedeemed {
                                         HStack {
                                             
-                                            AsyncImage(url: URL(string: product.imageURL)) { phase in
-                                                if let image = phase.image {
-                                                    image
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                } else if phase.error != nil {
-                                                    Text("There was an error loading the image.")
-                                                } else {
-                                                    ProgressView()
+                                            if(product.imageURL == ""){
+                                                Image(systemName: "shippingbox").foregroundColor(Color("AccentColor"))
+                                                    .scaledToFill()
+                                                    .font(.largeTitle)
+                                                
+                                                    .frame(width: 80, height: 80)
+                                            }else{
+                                                
+                                                AsyncImage(url: URL(string: product.imageURL)) { phase in
+                                                    if let image = phase.image {
+                                                        image
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 80, height: 80)
+                                                    } else if phase.error != nil {
+                                                        Text("There was an error loading the image.")
+                                                    } else {
+                                                        ProgressView()
+                                                    }
                                                 }
                                             }
-                                            .scaledToFit()
-                                            .frame(width: 80, height: 80)
+                                           
                                             VStack(alignment: .leading){
                                                 Text(product.productName)
                                                 
