@@ -7,6 +7,13 @@
 
 import Foundation
 import SwiftSoup
+import LinkPresentation
+func getProductTitleName (url: URL) async ->  (String,String){
+    let metadataProvider = LPMetadataProvider()
+    let metadata = try! await metadataProvider.startFetchingMetadata(for: url)
+    return (metadata.title!, metadata.originalURL!.absoluteString)
+    
+}
 
 func getProductImage(url: URL, completion: @escaping (Result<(String,String,String), Error>) -> Void) {
     URLSession.shared.dataTask(with: url) { data, response, error in
@@ -36,6 +43,7 @@ func getProductImage(url: URL, completion: @escaping (Result<(String,String,Stri
     }.resume()
 }
 func getRealImage(url: URL, completion: @escaping (Result<String, Error>) -> Void) {
+    
     URLSession.shared.dataTask(with: url) { data, response, error in
         if let error = error {
             completion(.failure(error))
