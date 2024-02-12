@@ -16,6 +16,7 @@ struct wishList: View {
     let haptic2 = UIImpactFeedbackGenerator(style: .heavy)
 
     @State var presentedSheet : Bool = false;
+    @State var showAlert: Bool = false
 
 
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
@@ -63,7 +64,6 @@ struct wishList: View {
                                         .frame(width: 80, height: 80)
                                         Text(product.productName).padding(.leading,10).bold()
                                     }
-                                    
                                     .swipeActions {
                                         Button(action:
                                                 {  context.delete(product)
@@ -85,19 +85,38 @@ struct wishList: View {
                                     //                                }
                                     //                                .tint(.yellow)
                                     //                            }
-                                    
+                                        
+//                                    NavigationView {
+                                        
                                     HStack{
                                         
                                         Spacer()
                                         if(defaults[0].points >= product.price){
-                                            
                                             Button{
+//                                                NavigationLink(destination: redeemedView(redeemedProduct: product)) {
+//                                                    Text("Redeem").frame(alignment: .center).bold()
+//                                                }
                                                 defaults[0].points =   defaults[0].points - product.price
                                                 product.isRedeemed = true
+                                                showAlert = true
                                                 try? context.save()
-                                            }
+                                                //                                                NavigationLink("yo", destination: redeemedView( redeemedProduct: product))
+                                                
+                                               }
                                         label: {
                                             Text("Redeem").frame(alignment: .center).bold()
+                                        }
+                                        .alert(isPresented: $showAlert) {
+                                            Alert(
+                                                title: Text("Confirmation"),
+                                                message: Text("Are you sure you want to redeem this product?"),
+                                                primaryButton: .default(Text("Yes")) {
+//                                                    redeemProduct()
+//                                                    navigateToRedeemedView(product: product)
+
+                                                },
+                                                secondaryButton: .cancel(Text("No"))
+                                            )
                                         }
                                         }
                                         else{
@@ -106,7 +125,8 @@ struct wishList: View {
                                         }
                                         Spacer()
                                         
-                                    }
+//                                    }
+                                        }
                                 }}
                             //                                            .onDelete(perform: { indexSet in
                             //                                                for index in indexSet{
@@ -138,6 +158,15 @@ struct wishList: View {
         
         
     }
+    
+//    func redeemProduct() {
+//       
+//        }
+//    
+//    func navigateToRedeemedView(product: Products) {
+//        NavigationLink("", destination: redeemedView( redeemedProduct: product))
+//    }
+
 }
     
 

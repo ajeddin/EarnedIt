@@ -22,7 +22,7 @@ struct redeemedView: View {
     @State var radius: CGFloat = 300
     @State var repetitions: Int = 0
     @State var repetitionInterval: Double = 1.0
-
+    @State var redeemedProduct: Products
 
 
     var body: some View {
@@ -85,6 +85,6 @@ struct ShakeEffect: GeometryEffect {
     
 }
 
-#Preview {
-    redeemedView()
-}
+//#Preview {
+//    redeemedView()
+//}
