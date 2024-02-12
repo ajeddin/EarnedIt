@@ -7,12 +7,17 @@
 
 import SwiftUI
 import ConfettiSwiftUI
-
+import SwiftData
 
 struct redeemedView: View {
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
     @State var presentedSheet : Bool = false;
     @State private var isShaking = false
+    @Environment(\.modelContext) private var context
+    @Query private var products: [Products];
+    @Query private var defaults: [UserChoices];
+
+    
     @State private var counter: Int = 2
     @State var num: Int = 500
     @State var fadesOut: Bool = true
@@ -51,6 +56,9 @@ struct redeemedView: View {
             }.confettiCannon(counter: $counter,num: 200, rainHeight: 800.0, openingAngle: .degrees(60), closingAngle: .degrees(120), radius: 500)
         }.onAppear {
             startConfettiAnimation()
+            defaults[0].points =   defaults[0].points - redeemedProduct.price
+            redeemedProduct.isRedeemed = true
+            try? context.save()
         }
 
        
