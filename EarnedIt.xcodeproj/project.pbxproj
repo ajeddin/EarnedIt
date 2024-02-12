@@ -22,6 +22,7 @@
 		217A927C2B73DA470068EE97 /* EarnedItShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 217A92722B73DA470068EE97 /* EarnedItShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		217A92862B7405210068EE97 /* modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D748BE2B6B574000E9A4EA /* modals.swift */; };
 		217A92892B7421940068EE97 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 217A92882B7421940068EE97 /* SwiftSoup */; };
+		218901842B7A583700CBF8A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 210E8D012B692F3A000D5549 /* Assets.xcassets */; };
 		219180852B7149A20072AF29 /* SpalshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219180842B7149A20072AF29 /* SpalshView.swift */; };
 		21A658A62B766E2000B9C8E3 /* modals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D748BE2B6B574000E9A4EA /* modals.swift */; };
 		21A658A72B76DBB300B9C8E3 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D748B92B6B508500E9A4EA /* functions.swift */; };
@@ -277,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				218901842B7A583700CBF8A8 /* Assets.xcassets in Resources */,
 				217A92782B73DA470068EE97 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,7 +471,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnedIt/Preview Content\"";
-				DEVELOPMENT_TEAM = M8ZG8KDA6A;
+				DEVELOPMENT_TEAM = 42NWXG687M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EarnedIt/Info.plist;
@@ -482,7 +484,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.EarnedIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -501,7 +503,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnedIt/Preview Content\"";
-				DEVELOPMENT_TEAM = M8ZG8KDA6A;
+				DEVELOPMENT_TEAM = 42NWXG687M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EarnedIt/Info.plist;
@@ -514,7 +516,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.EarnedIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

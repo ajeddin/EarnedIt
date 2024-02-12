@@ -19,7 +19,7 @@ struct earnedRewards: View {
     
     var body: some View {
         ZStack{
-            WavePage(buttonShwn:false,height1: 175 , height2: 210, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Earned Items",isPresented:$presentedSheet)
+            WavePage(buttonShwn:false,height1: 160 , height2: 192, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Earned Items",isPresented:$presentedSheet)
             if products.filter({ $0.isRedeemed == true }).count == 0 {
                 VStack(alignment: .center){
                     Image("noProducts").resizable().scaledToFit().frame(width: 100)
@@ -37,19 +37,28 @@ struct earnedRewards: View {
                                     if product.isRedeemed {
                                         HStack {
                                             
-                                            AsyncImage(url: URL(string: product.imageURL)) { phase in
-                                                if let image = phase.image {
-                                                    image
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                } else if phase.error != nil {
-                                                    Text("There was an error loading the image.")
-                                                } else {
-                                                    ProgressView()
+                                            if(product.imageURL == ""){
+                                                Image(systemName: "shippingbox").foregroundColor(Color("AccentColor"))
+                                                    .scaledToFill()
+                                                    .font(.largeTitle)
+                                                
+                                                    .frame(width: 80, height: 80)
+                                            }else{
+                                                
+                                                AsyncImage(url: URL(string: product.imageURL)) { phase in
+                                                    if let image = phase.image {
+                                                        image
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 80, height: 80)
+                                                    } else if phase.error != nil {
+                                                        Text("There was an error loading the image.")
+                                                    } else {
+                                                        ProgressView()
+                                                    }
                                                 }
                                             }
-                                            .scaledToFit()
-                                            .frame(width: 80, height: 80)
+                                           
                                             VStack(alignment: .leading){
                                                 Text(product.productName)
                                                 
