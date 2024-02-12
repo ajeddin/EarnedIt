@@ -16,8 +16,8 @@ struct wishList: View {
     let haptic2 = UIImpactFeedbackGenerator(style: .heavy)
     
     @State var presentedSheet : Bool = false;
-    
-    
+    @State var showAlert: Bool = false
+
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
     
     //    @State var arrayProducts: Product?;
@@ -67,6 +67,68 @@ struct wishList: View {
                                             
                                             Text(product.productName).padding(.leading,10).bold()
                                         }
+                                        .scaledToFit()
+                                        .frame(width: 80, height: 80)
+                                        Text(product.productName).padding(.leading,10).bold()
+                                    }
+                                    .swipeActions {
+                                        Button(action:
+                                                {  context.delete(product)
+                                            try? context.save()
+                                            haptic2.impactOccurred(intensity: 1)
+                                        }) {
+                                            Label("", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                        
+                                    }
+                                    //                            .swipeActions(edge: .leading) {
+                                    //                                Button(action: {
+                                    //                                    //                                removeTask(at: task)
+                                    //                                    defaults[0].points = defaults[0].points +  1;
+                                    //                                    try? context.save()
+                                    //                                }) {
+                                    //                                    Label("", systemImage: "gift")
+                                    //                                }
+                                    //                                .tint(.yellow)
+                                    //                            }
+                                        
+//                                    NavigationView {
+                                        
+                                    HStack{
+                                        
+                                        Spacer()
+                                        if(defaults[0].points >= product.price){
+                                            Button{
+//                                                NavigationLink(destination: redeemedView(redeemedProduct: product)) {
+//                                                    Text("Redeem").frame(alignment: .center).bold()
+//                                                }
+                                                defaults[0].points =   defaults[0].points - product.price
+                                                product.isRedeemed = true
+                                                showAlert = true
+                                                try? context.save()
+                                                //                                                NavigationLink("yo", destination: redeemedView( redeemedProduct: product))
+                                                
+                                               }
+                                        label: {
+                                            Text("Redeem").frame(alignment: .center).bold()
+                                        }
+                                        .alert(isPresented: $showAlert) {
+                                            Alert(
+                                                title: Text("Confirmation"),
+                                                message: Text("Are you sure you want to redeem this product?"),
+                                                primaryButton: .default(Text("Yes")) {
+//                                                    redeemProduct()
+//                                                    navigateToRedeemedView(product: product)
+
+                                                },
+                                                secondaryButton: .cancel(Text("No"))
+                                            )
+                                        }
+                                        }
+                                        else{
+                                            Text("\(defaults[0].points)/\(product.price)").bold()
+
                                         
                                         .swipeActions {
                                             Button(action:
@@ -90,6 +152,23 @@ struct wishList: View {
                                         //                                .tint(.yellow)
                                         //                            }
                                         
+//                                    }
+                                        }
+                                }}
+                            //                                            .onDelete(perform: { indexSet in
+                            //                                                for index in indexSet{
+                            //                                                    context.delete(products[index])
+                            //                                                } })
+                            
+                        }header: {
+                            
+                            Text("Products")
+                        } }.scrollContentBackground(.hidden)
+                    
+                    
+                }.padding(.top,180).cornerRadius(25)
+            }
+
                                         HStack{
                                             
                                             Spacer()
@@ -142,6 +221,15 @@ struct wishList: View {
         
         
     }
+    
+//    func redeemProduct() {
+//       
+//        }
+//    
+//    func navigateToRedeemedView(product: Products) {
+//        NavigationLink("", destination: redeemedView( redeemedProduct: product))
+//    }
+
 }
 
 
