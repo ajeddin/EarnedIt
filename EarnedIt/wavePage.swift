@@ -95,7 +95,7 @@ struct WavePage: View {
                                         
                                         Text("\(headerText)")
                                         //                                        .padding([.leading,.top],28)
-                                            .font(.largeTitle).foregroundColor(Color("ForegroundColor"))
+                                            .font(.largeTitle).foregroundColor(Color("ForegroundColor")).bold()
 //                                            do {
 //                                                Text("Points: \(defaults[0].points)")
 //                                            } catch IndexError.outOfRange {
@@ -103,12 +103,12 @@ struct WavePage: View {
 //                                                Text("Points: 0")
 //                                            }
                                         if (defaults.isEmpty){
-                                            Text("Points: 0")                                            .font(.title2).foregroundColor(Color("ForegroundColor"))
+                                            Text("Points: 0").bold()                                            .font(.title2).foregroundColor(Color("ForegroundColor"))
 
 
                                         }else{
                                             Text("Points: \(defaults[0].points)")  
-                                                .font(.title2).foregroundColor(Color("ForegroundColor"))
+                                                .bold().font(.title2).foregroundColor(Color("ForegroundColor"))
 }//                                                                                .padding(.leading,30)
                                         //                                        .padding(.top,50)
                                     }
