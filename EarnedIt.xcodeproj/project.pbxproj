@@ -35,6 +35,7 @@
 		C12435932B69357D007588A1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12435922B69357D007588A1 /* OnboardingView.swift */; };
 		C153F39E2B73CA5B00E48764 /* toDoListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C153F39D2B73CA5B00E48764 /* toDoListViews.swift */; };
 		C153F3A12B76866200E48764 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C153F3A02B76866200E48764 /* ConfettiSwiftUI */; };
+		C163D75F2B7A786D009F3F00 /* practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C163D75E2B7A786D009F3F00 /* practice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		C12435902B6934C3007588A1 /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
 		C12435922B69357D007588A1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C153F39D2B73CA5B00E48764 /* toDoListViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDoListViews.swift; sourceTree = "<group>"; };
+		C163D75E2B7A786D009F3F00 /* practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = practice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				210E8D0F2B69BD67000D5549 /* toDoList.swift */,
 				C153F39D2B73CA5B00E48764 /* toDoListViews.swift */,
 				210E8D132B69BDB1000D5549 /* wishList.swift */,
+				C163D75E2B7A786D009F3F00 /* practice.swift */,
 				210E8D112B69BD78000D5549 /* earnedRewards.swift */,
 				C124358E2B6931AA007588A1 /* onboarding.swift */,
 				C12435902B6934C3007588A1 /* OnboardingData.swift */,
@@ -298,6 +301,7 @@
 				210E8D102B69BD67000D5549 /* toDoList.swift in Sources */,
 				210E8D0C2B6938BD000D5549 /* wavePage.swift in Sources */,
 				C153F39E2B73CA5B00E48764 /* toDoListViews.swift in Sources */,
+				C163D75F2B7A786D009F3F00 /* practice.swift in Sources */,
 				210E8D122B69BD78000D5549 /* earnedRewards.swift in Sources */,
 				C12435912B6934C3007588A1 /* OnboardingData.swift in Sources */,
 				210E8D002B692F39000D5549 /* ContentView.swift in Sources */,
