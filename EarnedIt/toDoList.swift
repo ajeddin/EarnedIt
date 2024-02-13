@@ -9,11 +9,13 @@
 // abstract a view whose pattern is used multiple times and make a detail view for it
 import SwiftUI
 import SwiftData
+import UIKit
 struct toDoList: View {
     @Environment(\.modelContext) private var context
     @Query private var tasks: [Tasks];
     @Query private var defaults: [UserChoices];
     @State private var isEditing: Bool = false
+
 
     @Environment(\.colorScheme) var colorScheme
     @State private var addedTasks: [String: [String]] = ["Easy": [], "Medium": [], "Hard": []]
@@ -27,7 +29,9 @@ struct toDoList: View {
     
     
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
-
+    func dismissKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
     
     var body: some View {
         ZStack{
@@ -249,6 +253,12 @@ struct toDoList: View {
                 
             }.padding(.top,200).tint(.clear)
             
+        }  .onTapGesture {
+            dismissKeyboard()
+            newTask3 = ""
+            newTask2 = ""
+            newTask1 = ""
+
         }
     }
     
@@ -259,13 +269,16 @@ struct toDoList: View {
                 .foregroundColor(Color("AccentColor"))
 
             TextField("Add Task", text: $newTask3)
+
                 .bold()
                 .foregroundColor(Color("ForegroundColor"))
                 .disableAutocorrection(true)
+                .tint(.orange)
+
                 .onSubmit() {
                     addNewTask(task: Tasks(taskText: newTask3, taskPoints: 20))
                     newTask3 = ""
-                }
+                }.submitLabel(.done)
         }
     }
     
@@ -276,13 +289,15 @@ struct toDoList: View {
                 .foregroundColor(Color("AccentColor"))
 
             TextField("Add Task", text: $newTask2)
+
                 .bold()
                 .foregroundColor(Color("ForegroundColor"))
+//                .accentColor(.yellow)
                 .disableAutocorrection(true)
                 .onSubmit() {
                     addNewTask(task: Tasks(taskText: newTask2, taskPoints: 10))
                     newTask2 = ""
-                }
+                }.submitLabel(.done)
         }
     }
     
@@ -293,13 +308,16 @@ struct toDoList: View {
                 .foregroundColor(Color("AccentColor"))
             
             TextField("Add Task", text: $newTask1)
+
                 .bold()
                 .foregroundColor(Color("ForegroundColor"))
                 .disableAutocorrection(true)
+                .tint(.orange)
+
                 .onSubmit() {
                     addNewTask(task: Tasks(taskText: newTask1, taskPoints: 5))
                     newTask1 = ""
-                }
+                }.submitLabel(.done)
         }
     }
 

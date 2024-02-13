@@ -18,8 +18,9 @@ extension Formatter {
 }
 
 struct wishListSheet: View{
+    @FocusState private var fieldIsFocused: Bool
     @Environment(\.modelContext) private var context
-    @State var link: String = "Paste Link";
+    @State var link: String = "";
 //    @State var photo: String = "";
 //    @State var itemName: String = "";
 //    @State var amazonBool : Int = 1;
@@ -35,30 +36,31 @@ struct wishListSheet: View{
         
         VStack {
             VStack{
-                    HStack{
-//                        Link("Visit Our Site", destination: URL(string: "https://www.amazon.com")!)
+                HStack{
+                    //                        Link("Visit Our Site", destination: URL(string: "https://www.amazon.com")!)
+                    
+                    //                        TextField("Paste Link Here", text: $link).disableAutocorrection(true)
+                    //                        Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)))
+                    //                        TextField(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)),text:$link)
+                    Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
+                    PasteButton(payloadType: String.self) { strings in
+                        link = strings[0]
+                    }
+                    TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad).focused($fieldIsFocused)
 
-//                        TextField("Paste Link Here", text: $link).disableAutocorrection(true)
-//                        Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)))
-                        TextField(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)),text:$link)
-
-                        PasteButton(payloadType: String.self) { strings in
-                            link = strings[0]
-                        }}.onChange(of: link) { oldValue, newValue in
+                }.onChange(of: link) { oldValue, newValue in
                             if let range = link.range(of: "https") {
                                 var result = String(link[range.lowerBound...])
                                 result = result.trimmingCharacters(in: .whitespacesAndNewlines)
                                 link = result
-                                
-
-                                //                        print(result)
+     
                             } else {
                                 print("Substring 'https' not found")
                             }
                         }
-                TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad)
                     
-                }.padding(25)
+                }
+            .padding(25)
                 
                 Button(action: {
                     if (price <= 0){
@@ -83,7 +85,7 @@ struct wishListSheet: View{
                                     do {
                                                         let response = try await getProductTitleName(url: URL(string: link)!)
                                                         print(response.0)
-                                        let product = Products(imageURL: "", productName: response.0.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: response.1)
+                                        let product = Products(imageURL: "", productName: response.0.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: link)
                                                         context.insert(product)
                                                         try? context.save()       
                                         
@@ -103,7 +105,7 @@ struct wishListSheet: View{
                                     getProductImage(url: URL(string:response)!) { result in
                                         switch result {
                                         case .success(let response):
-                                            let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: response.1)
+                                            let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: link)
                                             context.insert(product)
                                             try? context.save()
                                             dismiss()
