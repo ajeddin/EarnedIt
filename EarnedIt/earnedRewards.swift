@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import UIKit
 struct earnedRewards: View {
     @Environment(\.modelContext) private var context
     @Query private var products: [Products];
@@ -61,7 +62,7 @@ struct earnedRewards: View {
                                            
                                             VStack(alignment: .leading){
                                                 Text(product.productName)
-                                                
+
                                                 
                                                 
                                                 Text("$\(product.price)")
@@ -76,6 +77,14 @@ struct earnedRewards: View {
                                                 Label("", systemImage: "trash")
                                             }
                                             .tint(.red)}
+                                        .swipeActions(edge: .leading) {
+                                            Button(action: {
+                                                UIApplication.shared.open(URL(string: product.productLink)!)
+                                            }) {
+                                                Label("", systemImage: "trash")
+                                            }
+                                            .tint(.blue)
+                                        }
                                     }
                                 }
                                 

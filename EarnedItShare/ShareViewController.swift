@@ -9,6 +9,7 @@ import UIKit
 import Social
 import SwiftData
 import SwiftUI
+import LinkPresentation
 class ShareViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -27,6 +28,21 @@ class ShareViewController: UIViewController {
     }
 
 }
+
+
+
+//struct LinkViewWrapper: UIViewRepresentable {
+//    let linkView: LPLinkView
+//
+//    func makeUIView(context: Context) -> UIView {
+//        return linkView
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {
+//        // Implement any updates if needed
+//    }
+//}
+
 extension Formatter {
     static let lucNumberFormat: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -46,12 +62,15 @@ fileprivate struct  SheetView: View {
     @State var link: String = ""
     @State var isAmazLink = false
     @State var title: String = ""
-
+  
     var body: some View{
         VStack{
                 VStack{
                     HStack{
                         Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
+                        
+//                        let linkView  = fetchPreview(url: link)
+//                        LinkViewWrapper(linkView: fetchPreview(url: link)).frame(width: 150,height: 50)   
                     }
                     TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad).foregroundColor(Color("ForegroundColor") )
                     
@@ -69,7 +88,7 @@ fileprivate struct  SheetView: View {
 
                     print(link)
                     
-                    if (link.hasPrefix("https://a.co") || link.hasPrefix("https://www.amazon.com")){
+                    if ( (link.hasPrefix("https://a.co") || link.hasPrefix("https://www.amazon.com") ) && link.count > 30){
                         getRealImage(url: URL(string:link)!) { result in
                             
                             switch result {
@@ -100,7 +119,7 @@ fileprivate struct  SheetView: View {
                             do {
                                                 let response = try await getProductTitleName(url: URL(string: link)!)
                                                 print(response.0)
-                                let product = Products(imageURL: "", productName: response.0.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: response.1)
+                                let product = Products(imageURL: "", productName: response.0.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: link)
                                                 context.insert(product)
                                                 try? context.save()
                                 

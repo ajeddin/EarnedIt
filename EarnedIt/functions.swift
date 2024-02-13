@@ -10,8 +10,18 @@ import SwiftSoup
 import LinkPresentation
 func getProductTitleName (url: URL) async ->  (String,String){
     let metadataProvider = LPMetadataProvider()
-    let metadata = try! await metadataProvider.startFetchingMetadata(for: url)
-    return (metadata.title!, metadata.originalURL!.absoluteString)
+    do {
+        let metadata = try await metadataProvider.startFetchingMetadata(for: url)
+        return (metadata.title!, metadata.originalURL!.absoluteString)
+
+    }catch{
+        let metadata: (String,String)
+        metadata.0 = "Random"
+        metadata.1 = url.absoluteString
+        return (metadata.0, metadata.1)
+
+    }
+//    return (metadata.title!, metadata.originalURL!.absoluteString)
     
 }
 
