@@ -1,6 +1,10 @@
 
 
 
+
+
+
+
 //
 //  wishList.swift
 //  EarnedIt
@@ -99,16 +103,18 @@ struct wishList: View {
                                                 
                                                 Spacer()
                                                 if(defaults[0].points >= product.price){
-                                    
-                                                    NavigationLink(
-                                                        destination: redeemedView(redeemedProduct: product)){
-                                                            Button(action: {
-                                                                
-                                                            }) {
-                                                                Text("Redeem").bold().foregroundColor(Color("ForegroundColor"))
-                                                            }
-//                                                            .button .Style(MyButtonStyle))
-                                                    }
+//                                                    .isDetailLink(false)
+//                                                    NavigationLink(
+//                                                        destination: redeemedView(redeemedProduct: product)){
+//                                                            Button(action: {
+//
+//                                                            }) {
+//                                                                Text("Redeem").bold().foregroundColor(Color("ForegroundColor"))
+//                                                            }
+////                                                            .button .Style(MyButtonStyle))
+//                                                    }
+                                                    NavigationLink("Redeem", destination: redeemedView(redeemedProduct: product))
+
                                                     
                                                 }
                                                 else{
@@ -146,7 +152,8 @@ struct wishList: View {
             
             
             
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
+
         
     }
 }
