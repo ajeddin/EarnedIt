@@ -20,7 +20,7 @@ struct onboarding: View {
                    }})
                .tabViewStyle(PageTabViewStyle())
 //               .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-               .tabViewStyle(.page(indexDisplayMode: .never))
+//               .tabViewStyle(.page(indexDisplayMode .: .never))
 
            }
        }

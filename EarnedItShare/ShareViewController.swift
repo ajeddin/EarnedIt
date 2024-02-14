@@ -114,7 +114,7 @@ fileprivate struct  SheetView: View {
                                     
                                     switch result {
                                     case .success(let response):
-                                        let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: response.1)
+                                        let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: link)
                                         saveItem(product: product)
                                         extentionContext!.completeRequest(returningItems: [])
 

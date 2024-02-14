@@ -35,51 +35,54 @@ struct wishListSheet: View{
     var body: some View{
         
         VStack {
+            HStack{
             VStack{
                 HStack(alignment: .center, content: {
                     Text("Add Product").font(.title3).bold().foregroundColor(Color("ForegroundColor"))
                 })
                 Spacer()
-                HStack{
-                    Link(destination: URL(string: "https://www.amazon.com")!, label: {
-//                        Text("Facebook")
-                        Image( "amazonButton")
-                            .resizable()
-                            .frame(width: 200, height: 115)
-                    })
-              
-                    Link(destination: URL(string: "https://www.google.com")!, label: {
-//                        Text("Facebook")
-                        Image( "safariButton")
-                            .resizable()
-                            .frame(width: 200, height: 115)
-                    })
-                }
-                HStack{
-//                                            Link("Visit Our Site", destination: URL(string: "https://www.amazon.com")!)
-                    
-                    
-                    //                        TextField("Paste Link Here", text: $link).disableAutocorrection(true)
-                    //                        Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)))
-                    //                        TextField(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)),text:$link)
-//                    Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
-                    PasteButton(payloadType: String.self) { strings in
-                        link = strings[0]
+                
+                    HStack{
+                        Link(destination: URL(string: "https://www.amazon.com")!, label: {
+                            //                        Text("Facebook")
+                            Image( "amazonButton")
+                                .resizable()
+                                .frame(width: 200, height: 115)
+                        })
+                        
+                        Link(destination: URL(string: "https://www.google.com")!, label: {
+                            //                        Text("Facebook")
+                            Image( "safariButton")
+                                .resizable()
+                                .frame(width: 200, height: 115)
+                        })
                     }
-                    TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad).focused($fieldIsFocused)
-
-                }.onChange(of: link) { oldValue, newValue in
-                            if let range = link.range(of: "https") {
-                                var result = String(link[range.lowerBound...])
-                                result = result.trimmingCharacters(in: .whitespacesAndNewlines)
-                                link = result
-     
-                            } else {
-                                print("Substring 'https' not found")
-                            }
+                    HStack{
+                        //                                            Link("Visit Our Site", destination: URL(string: "https://www.amazon.com")!)
+                        
+                        
+                        //                        TextField("Paste Link Here", text: $link).disableAutocorrection(true)
+                        //                        Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)))
+                        //                        TextField(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)),text:$link)
+                        //                    Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
+                        PasteButton(payloadType: String.self){ strings in
+                            link = strings[0]
+                        }.background(.black)
+                        TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad).focused($fieldIsFocused).foregroundColor(Color("ForegroundColor").opacity(0.7))
+                        
+                    }.onChange(of: link) { oldValue, newValue in
+                        if let range = link.range(of: "https") {
+                            var result = String(link[range.lowerBound...])
+                            result = result.trimmingCharacters(in: .whitespacesAndNewlines)
+                            link = result
+                            
+                        } else {
+                            print("Substring 'https' not found")
                         }
+                    }
                     
                 }
+            }.padding([.leading,.trailing])
             .padding(25)
                 
                 Button(action: {
@@ -144,7 +147,7 @@ struct wishListSheet: View{
                 }) {
 
                     Text("Done")
-//                        .foregroundColor(Color("AccentColor")) .
+                        .foregroundColor(Color.black) .bold()
                 }.buttonStyle(.borderedProminent)
   
                 

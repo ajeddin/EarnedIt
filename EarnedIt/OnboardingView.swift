@@ -21,25 +21,25 @@ struct OnboardingView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-       
-            HStack{
-                Spacer()
-                if currentPageIndex != 2 {
-                    Button("Skip",  action: {
-                        let defaultUserr = UserChoices(points: 0, onboardingViewed: true)
-                        Modelcontext.insert(defaultUserr)
-                        
-                    }
-                        
-                    )
-                    
-                    .foregroundColor(Color("ForegroundColor"))
-                    .edgesIgnoringSafeArea(.top)
-                    .font(.title3)
-                    .padding(.trailing, 40)
-                    .padding(.top, 1)
-                    
-                }}
+//       
+//            HStack{
+//                Spacer()
+//                if currentPageIndex != 2 {
+//                    Button("Skip",  action: {
+//                        let defaultUserr = UserChoices(points: 0, onboardingViewed: true)
+//                        Modelcontext.insert(defaultUserr)
+//                        
+//                    }
+//                        
+//                    )
+//                    
+//                    .foregroundColor(Color("ForegroundColor"))
+//                    .edgesIgnoringSafeArea(.top)
+//                    .font(.title3)
+//                    .padding(.trailing, 40)
+//                    .padding(.top, 1)
+//                    
+//                }}
 
                        Image(data.objectImage)
                            .resizable()

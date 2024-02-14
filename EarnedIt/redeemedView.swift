@@ -11,7 +11,8 @@ import SwiftData
 import UIKit
 struct redeemedView: View {
     @Environment(\.dismiss) var dismiss
-
+//    @AppStorage("isPresented")
+// var isPresented: Bool = true;
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
     @State var presentedSheet : Bool = false;
     @State private var isShaking = false
@@ -78,7 +79,9 @@ struct redeemedView: View {
                 
                 
                 Button{
+                    
                     UIApplication.shared.open(URL(string: redeemedProduct.productLink)!)
+//                    isPres ented = false
 dismiss()
                 }label: {
                 
@@ -100,6 +103,7 @@ dismiss()
                 HStack(alignment:.center){
 //                    Spacer()
                     Button{
+//                        isPresented = false
                         dismiss()
                     }label:{
                         Text("Do It Later").foregroundColor(Color("ForegroundColor"))
@@ -118,6 +122,9 @@ dismiss()
             if(!ReduceMotion){
                 startConfettiAnimation()
             }
+            defaults[0].points =   defaults[0].points - redeemedProduct.price
+            redeemedProduct.isRedeemed = true
+            try? context.save()
 //            defaults[0].points =   defaults[0].points - redeemedProduct.price
 //            redeemedProduct.isRedeemed = true
 //            try? context.save()
