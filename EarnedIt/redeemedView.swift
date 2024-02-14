@@ -79,7 +79,7 @@ struct redeemedView: View {
                 
                 Button{
                     UIApplication.shared.open(URL(string: redeemedProduct.productLink)!)
-
+dismiss()
                 }label: {
                 
                     if(!ReduceMotion){
@@ -97,15 +97,16 @@ struct redeemedView: View {
                     }
                 }
                 Spacer()
-                HStack{
+                HStack(alignment:.center){
+//                    Spacer()
                     Button{
                         dismiss()
                     }label:{
-                        Text("Back").foregroundColor(Color("ForegroundColor"))
-                    }
+                        Text("Do It Later").foregroundColor(Color("ForegroundColor"))
+                    }.buttonStyle(.borderedProminent)
                     .padding(.leading)
 
-                    Spacer()
+//                    Spacer()
                 }
                 
                 
