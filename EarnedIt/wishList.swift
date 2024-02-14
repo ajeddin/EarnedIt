@@ -37,7 +37,7 @@ struct wishList: View {
     var body: some View {
 //        NavigationView{
             ZStack{
-                WavePage(buttonShwn:true,height1: 160 , height2: 192, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Wishlist",isPresented:$presentedSheet)
+                WavePage(buttonShwn:true,height1: 160 , height2: 192, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Wishlist",isPresented:$presentedSheet,showButton:true)
                 
                 if products.filter({ $0.isRedeemed == false }).count == 0 {
                     VStack(alignment: .center){
@@ -104,6 +104,7 @@ struct wishList: View {
                                                 Spacer()
                                                 if(defaults[0].points >= product.price){
                                                     Button(action: {
+                                                        
                                                         item = product;
                                                         defaults[0].points =   defaults[0].points - product.price
                                                         product.isRedeemed = true
@@ -144,7 +145,7 @@ struct wishList: View {
                 
                 
                 
-            }                    .fullScreenCover(isPresented: $isPresented, content: {redeemedView(redeemedProduct: item)})
+            }.fullScreenCover(isPresented: $isPresented, content: {redeemedView(redeemedProduct: item)})
 
             .sheet(isPresented: $presentedSheet, content: {
                 wishListSheet().presentationDetents([.height(330)])
@@ -182,15 +183,4 @@ struct wishList: View {
 }
 
 
-struct FullScreenModalView: View {
-    @Environment(\.dismiss) var dismiss
 
-    var body: some View {
-        ZStack {
-            Color.primary.edgesIgnoringSafeArea(.all)
-            Button("Dismiss Modal") {
-                dismiss()
-            }
-        }
-    }
-}

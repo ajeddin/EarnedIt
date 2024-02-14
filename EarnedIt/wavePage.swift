@@ -53,7 +53,8 @@ struct WavePage: View {
     @Binding var isPresented :Bool;
     var cond = false;
     @State private var change = false;
-    
+    var showButton: Bool;
+
     
     
     
@@ -102,13 +103,14 @@ struct WavePage: View {
 //                                                // Handle the specific error by setting a default value
 //                                                Text("Points: 0")
 //                                            }
-                                        if (defaults.isEmpty){
+                                        if(showButton){
+                                        if (defaults.isEmpty ){
                                             Text("Points: 0").bold()                                            .font(.title2).foregroundColor(Color("ForegroundColor"))
 
 
                                         }else{
-                                            Text("Points: \(defaults[0].points)")  
-                                                .bold().font(.title2).foregroundColor(Color("ForegroundColor"))
+                                            Text("Points: \(defaults[0].points)")
+                                            .bold().font(.title2).foregroundColor(Color("ForegroundColor"))}
 }//                                                                                .padding(.leading,30)
                                         //                                        .padding(.top,50)
                                     }
