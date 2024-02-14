@@ -81,7 +81,7 @@ struct earnedRewards: View {
                                             Button(action: {
                                                 UIApplication.shared.open(URL(string: product.productLink)!)
                                             }) {
-                                                Label("", systemImage: "trash")
+                                                Label("", systemImage: "link")
                                             }
                                             .tint(.blue)
                                         }
