@@ -11,15 +11,15 @@ import SwiftData
 import UIKit
 struct redeemedView: View {
     @Environment(\.dismiss) var dismiss
-//    @AppStorage("isPresented")
-// var isPresented: Bool = true;
+    //    @AppStorage("isPresented")
+    // var isPresented: Bool = true;
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
     @State var presentedSheet : Bool = false;
     @State private var isShaking = false
     @Environment(\.modelContext) private var context
     @Query private var products: [Products];
     @Query private var defaults: [UserChoices];
-
+    
     
     @State private var counter: Int = 2
     @State var num: Int = 500
@@ -31,25 +31,24 @@ struct redeemedView: View {
     @State var repetitions: Int = 0
     @State var repetitionInterval: Double = 1.0
     @State var redeemedProduct: Products
+    @State private var isBreathing = false
 
-
+    
     var body: some View {
         
         ZStack{
             
-                
-                
-                WavePage(buttonShwn:false,height1: 160 , height2: 192, isOn: !ReduceMotion,duration1: 20,duration2: 25, showingText: true, headerText: "You Earned It!!!",isPresented:$presentedSheet,showButton:false)
+            
+            
+            WavePage(buttonShwn:false,height1: 160 , height2: 192, isOn: !ReduceMotion,duration1: 20,duration2: 25, showingText: true, headerText: "You've Earned It!",isPresented:$presentedSheet,showButton:false)
             
             VStack{
                 
                 Spacer()
-                Spacer()
-                Spacer()
-
+                
                 Text(redeemedProduct.productName).padding(.leading,10).font(.title3).multilineTextAlignment(.center)
-
-
+                
+                
                 HStack {
                     if(redeemedProduct.imageURL == ""){
                         Image(systemName: "shippingbox").foregroundColor(Color("AccentColor"))
@@ -78,44 +77,88 @@ struct redeemedView: View {
                 Spacer()
                 
                 
-                Button{
-                    
-                    UIApplication.shared.open(URL(string: redeemedProduct.productLink)!)
-//                    isPres ented = false
-dismiss()
-                }label: {
                 
-                    if(!ReduceMotion){
-                        Image("redeemGift")
-                            .resizable()
-                            .scaledToFit()
-                        .modifier(ShakeEffect(shakes: isShaking ? 1 : 0))
-                        .onAppear {withAnimation(Animation.linear(duration: 0.1).repeatForever(autoreverses: true)) {self.isShaking.toggle()
-                        }
-                        }
-                    }else{
-                        Image("redeemGift")
-                            .resizable()
-                            .scaledToFit()
+                
+                VStack(alignment:.center){
+                    HStack(alignment:.center){
+                        
+                        Button{
+                            
+                            UIApplication.shared.open(URL(string: redeemedProduct.productLink)!)
+                            //                    isPres ented = false
+                            dismiss()
+                        }label: {
+                            
+                            
+                            
+                            
+                            Image(systemName: "gift")
+                                .font(.largeTitle)
+                                .foregroundColor(Color("ForegroundColor"))
+                            Text("Buy Now!")
+                                .foregroundColor(Color("ForegroundColor"))
+                                .font(.largeTitle)
+                                .multilineTextAlignment(.center)
+                            
+                            Image(systemName: "gift")
+                                .font(.largeTitle)
+                                .foregroundColor(Color("ForegroundColor"))
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            //                            .resizable()
+                            //                            .scaledToFit()
+                            
+                            
+                            //                                .modifier(ShakeEffect(shakes: isShaking ? 1 : 0.0))
+                            //                                .onAppear {withAnimation(Animation.linear(duration: 25).repeatForever(autoreverses: false)) {self.isShaking.toggle()
+                            //                                }
+                            //                                }
+                            
+                            
+                            
+                        }               
+                            .buttonStyle(.borderedProminent)
+                            .scaleEffect(isBreathing ? 1.2 : 1.0)
+                            .animation(
+                                Animation.easeInOut(duration: 1.5)
+                                    .repeatForever(autoreverses: true)
+                            )
+                            .onAppear() {
+                                if(!ReduceMotion){
+                                    
+                                    self.isBreathing = true
+                                }
+                            }
+                        
                     }
-                }
-                Spacer()
-                HStack(alignment:.center){
-//                    Spacer()
-                    Button{
-//                        isPresented = false
-                        dismiss()
-                    }label:{
-                        Text("Do It Later").foregroundColor(Color("ForegroundColor"))
-                    }.buttonStyle(.borderedProminent)
-                    .padding(.leading)
-
-//                    Spacer()
-                }
+                    
+                    
+                    .padding()
+                    
+                    //                    Spacer()
+                    HStack(alignment:.center){
+                        //                    Spacer()
+                        Button{
+                            //                        isPresented = false
+                            dismiss()
+                        }label:{
+                            Text("Do It Later").foregroundColor(Color("ForegroundColor"))                            .font(.title3)
+                            
+                        }.buttonStyle(.borderedProminent)
+                        
+                        //                    Spacer()
+                    }
+                }                    .padding(.bottom)
                 
                 
-//                    .confettiCannon(counter: $counter,num: 200, rainHeight: 800.0, openingAngle: .degrees(80), closingAngle: .degrees(160), radius: 500)
-                Spacer()
+                //                    .confettiCannon(counter: $counter,num: 200, rainHeight: 800.0, openingAngle: .degrees(80), closingAngle: .degrees(160), radius: 500)
+                //                Spacer()
                 
             }.confettiCannon(counter: $counter,num: 200, rainHeight: 800.0, openingAngle: .degrees(60), closingAngle: .degrees(120), radius: 500)
         }.onAppear {
@@ -125,26 +168,26 @@ dismiss()
             defaults[0].points =   defaults[0].points - redeemedProduct.price
             redeemedProduct.isRedeemed = true
             try? context.save()
-//            defaults[0].points =   defaults[0].points - redeemedProduct.price
-//            redeemedProduct.isRedeemed = true
-//            try? context.save()
+            //            defaults[0].points =   defaults[0].points - redeemedProduct.price
+            //            redeemedProduct.isRedeemed = true
+            //            try? context.save()
         }
-
-       
+        
+        
     }
     private func startConfettiAnimation() {
-           DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
-               // Trigger confetti animation
-               withAnimation(Animation.linear(duration: 0.5)) {
-                   counter += 1
-               }
-               // Reset animation after it completes
-               DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                   counter = 2
-                   startConfettiAnimation() // Restart animation
-               }
-           }
-       }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+            // Trigger confetti animation
+            withAnimation(Animation.linear(duration: 0.5)) {
+                counter += 1
+            }
+            // Reset animation after it completes
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                counter = 2
+                startConfettiAnimation() // Restart animation
+            }
+        }
+    }
 }
 struct ShakeEffect: GeometryEffect {
     var shakes: CGFloat
@@ -155,8 +198,8 @@ struct ShakeEffect: GeometryEffect {
     }
     
     func effectValue(size: CGSize) -> ProjectionTransform {
-        let xOffset = CGFloat.random(in: -20...20) * shakes
-        let yOffset = CGFloat.random(in: -5...5) * shakes
+        let xOffset = CGFloat.random(in: -25...25) * shakes
+        let yOffset = CGFloat.random(in: -0...0) * shakes
         return ProjectionTransform(CGAffineTransform(translationX: xOffset, y: yOffset))
     }
     
