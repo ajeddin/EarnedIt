@@ -295,6 +295,8 @@ struct toDoList: View {
                 .foregroundColor(Color("ForegroundColor"))
 //                .accentColor(.yellow)
                 .disableAutocorrection(true)
+                .tint(.orange)
+
                 .onSubmit() {
                     addNewTask(task: Tasks(taskText: newTask2, taskPoints: 10))
                     newTask2 = ""

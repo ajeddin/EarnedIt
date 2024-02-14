@@ -63,26 +63,28 @@ fileprivate struct  SheetView: View {
     @State var isAmazLink = false
     @State var title: String = ""
     @FocusState private var fieldIsFocused: Bool
-
+    @State var inProgress: Bool = false;
   
     var body: some View{
+        
         VStack{
-            HStack(alignment: .bottom) {
-              Spacer()
-                Button{
-                    extentionContext!.completeRequest(returningItems: [])
-
-                }label:{
-                    Image(systemName: "xmark.circle").foregroundColor(Color("ForegroundColor") ).font(.title)
+            if(!inProgress){
+                HStack(alignment: .bottom) {
+                    Spacer()
+                    Button{
+                        extentionContext!.completeRequest(returningItems: [])
+                        
+                    }label:{
+                        Image(systemName: "xmark.circle").foregroundColor(Color("ForegroundColor") ).font(.title)
+                    }
                 }
-            }
                 VStack{
-                  
+                    
                     HStack{
                         Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
                         
-//                        let linkView  = fetchPreview(url: link)
-//                        LinkViewWrapper(linkView: fetchPreview(url: link)).frame(width: 150,height: 50)   
+                        //                        let linkView  = fetchPreview(url: link)
+                        //                        LinkViewWrapper(linkView: fetchPreview(url: link)).frame(width: 150,height: 50)
                     }
                     TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad).foregroundColor(Color("ForegroundColor") )
                         .focused($fieldIsFocused)
@@ -90,81 +92,87 @@ fileprivate struct  SheetView: View {
                 }
                 .padding(25)
                 
-//                    .background(Color.white.opa city(0.7))
+                //                    .background(Color.white.opa city(0.7))
                 
-            
-            Button{
-                if (price <= 0){
-                                    haptic.notificationOccurred(.error)
-                }else{
-                                    haptic.notificationOccurred(.success)
-
-                    print(link)
-                    
-                    if ( (link.hasPrefix("https://a.co") || link.hasPrefix("https://www.amazon.com") )){
-
-                        getRealImage(url: URL(string:link)!) { result in
-                            print(link)
-
-                            switch result {
-                            case .success(let response):
-                                print(link)
-
-                                getProductImage(url: URL(string:response)!) { result in
-                                    
-                                    switch result {
-                                    case .success(let response):
-                                        let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: link)
-                                        saveItem(product: product)
-                                        extentionContext!.completeRequest(returningItems: [])
-
-                                        
-                                    case .failure(let error):
-                                        print("Error: \(error)")
-                                    }
-                                }
-                                
-                            case .failure(let error):
-                                print("Error: \(error)")
-                            }
-                        }
+                
+                Button{
+                    if (price <= 0){
+                        haptic.notificationOccurred(.error)
+                    }else{
+                        haptic.notificationOccurred(.success)
                         
-                    }
-                    else{
-                        Task {
-                            print(link)
-                            do {
-                                                let response = try await getProductTitleName(url: URL(string: link)!)
-                                                print(response.0)
-                                let product = Products(imageURL: "", productName: response.0.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: link)
-                                                context.insert(product)
-                                                try? context.save()
+                        print(link)
+                        
+                        if ( (link.hasPrefix("https://a.co") || link.hasPrefix("https://www.amazon.com") )){
+                            inProgress.toggle()
+                            getRealImage(url: URL(string:link)!) { result in
+                                print(link)
                                 
-                                // Handle the response as needed
-                                            } catch {
-                                                print("Error fetching data: \(error)")
-                                            }
+                                switch result {
+                                case .success(let response):
+                                    print(link)
+                                    
+                                    getProductImage(url: URL(string:response)!) { result in
+                                        
+                                        switch result {
+                                        case .success(let response):
+                                            let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: link)
+                                            saveItem(product: product)
+                                            extentionContext!.completeRequest(returningItems: [])
+                                            
+                                            
+                                        case .failure(let error):
+                                            print("Error: \(error)")
                                         }
-                        extentionContext!.completeRequest(returningItems: [])
-
+                                    }
+                                    
+                                case .failure(let error):
+                                    print("Error: \(error)")
+                                }
+                            }
+                            
+                        }
+                        else{
+                            Task {
+                                print(link)
+                                do {
+                                    let response = try await getProductTitleName(url: URL(string: link)!)
+                                    print(response.0)
+                                    let product = Products(imageURL: "", productName: response.0.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: link)
+                                    context.insert(product)
+                                    try? context.save()
+                                    
+                                    // Handle the response as needed
+                                } catch {
+                                    print("Error fetching data: \(error)")
+                                }
+                            }
+                            extentionContext!.completeRequest(returningItems: [])
+                            
+                        }
                     }
-                }
-            
-            } label: {Text("Done").foregroundColor(Color("ForegroundColor"))
-            }.buttonStyle(.borderedProminent)
-
-            
-            
-            
-            
+                    
+                } label: {Text("Done").foregroundColor(Color("ForegroundColor"))
+                }.buttonStyle(.borderedProminent)
+            }
+                
+            else{
+                
+                ProgressView();
+            }
+                
+                
+            }
+                .onAppear(perform: {
+                    extract()
+                    
+                    
+                }).padding(20)
+                .background(Color("BackgroundColor")).cornerRadius(25)
         }
-            .onAppear(perform: {
-            extract()
-            
-            
-            }).padding(20)
-            .background(Color("BackgroundColor")).cornerRadius(25)
-    }
+        
+    
+        
 
     
     func extract(){
