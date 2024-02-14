@@ -15,16 +15,19 @@
 import SwiftUI
 import SwiftData
 struct wishList: View {
+//    @AppStorage("isPresented")
+    @State var isPresented: Bool = false;
     @Environment(\.modelContext) private var context
     @Query private var products: [Products];
     @Query private var defaults: [UserChoices];
     @State var userPoints : Int = 0
     @State var productPrice : Int = 0
+    @State var item : Products = Products(imageURL: "", productName: "", price: 0, productLink: "")
     let haptic2 = UIImpactFeedbackGenerator(style: .heavy)
     @State var showAlert: Bool = false
 
     @State var presentedSheet : Bool = false;
-    
+
     
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
     
@@ -32,7 +35,7 @@ struct wishList: View {
     //    @AppStorage("arrayProducts")
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             ZStack{
                 WavePage(buttonShwn:true,height1: 160 , height2: 192, isOn: !ReduceMotion,duration1: 28,duration2: 30, showingText: true, headerText: "Wishlist",isPresented:$presentedSheet)
                 
@@ -88,33 +91,33 @@ struct wishList: View {
                                                 .tint(.red)
                                                 
                                             }
-                                            //                            .swipeActions(edge: .leading) {
-                                            //                                Button(action: {
-                                            //                                    //                                removeTask(at: task)
-                                            //                                    defaults[0].points = defaults[0].points +  1;
-                                            //                                    try? context.save()
-                                            //                                }) {
-                                            //                                    Label("", systemImage: "gift")
-                                            //                                }
-                                            //                                .tint(.yellow)
-                                            //                            }
-                                            
+                                            .swipeActions(edge: .leading) {
+                                                Button(action: {
+                                                    UIApplication.shared.open(URL(string: product.productLink)!)
+                                                }) {
+                                                    Label("", systemImage: "link")
+                                                }
+                                                .tint(.blue)
+                                            }
                                             HStack(alignment:.center){
                                                 
                                                 Spacer()
                                                 if(defaults[0].points >= product.price){
-//                                                    .isDetailLink(false)
-//                                                    NavigationLink(
-//                                                        destination: redeemedView(redeemedProduct: product)){
-//                                                            Button(action: {
-//
-//                                                            }) {
-//                                                                Text("Redeem").bold().foregroundColor(Color("ForegroundColor"))
-//                                                            }
-////                                                            .button .Style(MyButtonStyle))
+                                                    Button(action: {
+                                                        item = product;
+                                                        defaults[0].points =   defaults[0].points - product.price
+                                                        product.isRedeemed = true
+                                                        try? context.save()
+                                                        isPresented = true
+                                                        
+                                                     }) {
+                                                         Text("Redeem").bold().foregroundColor(Color("ForegroundColor"))
+                                                     }
+                                                  
+                                                    /*redeemedView(redeemedProduct: product)*/
+//                                                    NavigationLink(destination: redeemedView(redeemedProduct: product), isActive: $shouldNavigate) {
+//                                                        EmptyView()
 //                                                    }
-                                                    NavigationLink("Redeem", destination: redeemedView(redeemedProduct: product))
-
                                                     
                                                 }
                                                 else{
@@ -141,9 +144,13 @@ struct wishList: View {
                 
                 
                 
-            }.sheet(isPresented: $presentedSheet, content: {
+            }                    .fullScreenCover(isPresented: $isPresented, content: {redeemedView(redeemedProduct: item)})
+
+            .sheet(isPresented: $presentedSheet, content: {
                 wishListSheet().presentationDetents([.height(330)])
                     .presentationDragIndicator(.hidden)
+//                    .fullScreenCover(isPresented: $isPresented, content: FullScreenModalView.init)
+
                 
             }
             )
@@ -152,7 +159,8 @@ struct wishList: View {
             
             
             
-        }.navigationViewStyle(StackNavigationViewStyle())
+            
+//        }.navigationViewStyle(StackNavigationViewStyle())
 
         
     }
@@ -171,4 +179,18 @@ struct wishList: View {
 
 #Preview {
     wishList()
+}
+
+
+struct FullScreenModalView: View {
+    @Environment(\.dismiss) var dismiss
+
+    var body: some View {
+        ZStack {
+            Color.primary.edgesIgnoringSafeArea(.all)
+            Button("Dismiss Modal") {
+                dismiss()
+            }
+        }
+    }
 }

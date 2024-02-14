@@ -10,6 +10,8 @@ import ConfettiSwiftUI
 import SwiftData
 
 struct redeemedView: View {
+    @Environment(\.dismiss) var dismiss
+
     @Environment(\.accessibilityReduceMotion) var ReduceMotion;
     @State var presentedSheet : Bool = false;
     @State private var isShaking = false
@@ -42,7 +44,11 @@ struct redeemedView: View {
                 Spacer()
                 Spacer()
                 Spacer()
-                
+                Button{
+                    dismiss()
+                }label:{
+                    Text("Hello")
+                }
                 Image("redeemGift")
                     .resizable()
                     .scaledToFit()
@@ -56,9 +62,9 @@ struct redeemedView: View {
             }.confettiCannon(counter: $counter,num: 200, rainHeight: 800.0, openingAngle: .degrees(60), closingAngle: .degrees(120), radius: 500)
         }.onAppear {
             startConfettiAnimation()
-            defaults[0].points =   defaults[0].points - redeemedProduct.price
-            redeemedProduct.isRedeemed = true
-            try? context.save()
+//            defaults[0].points =   defaults[0].points - redeemedProduct.price
+//            redeemedProduct.isRedeemed = true
+//            try? context.save()
         }
 
        

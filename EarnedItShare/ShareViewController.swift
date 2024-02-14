@@ -62,10 +62,22 @@ fileprivate struct  SheetView: View {
     @State var link: String = ""
     @State var isAmazLink = false
     @State var title: String = ""
+    @FocusState private var fieldIsFocused: Bool
+
   
     var body: some View{
         VStack{
+            HStack(alignment: .bottom) {
+              Spacer()
+                Button{
+                    extentionContext!.completeRequest(returningItems: [])
+
+                }label:{
+                    Image(systemName: "xmark.circle").foregroundColor(Color("ForegroundColor") ).font(.title)
+                }
+            }
                 VStack{
+                  
                     HStack{
                         Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
                         
@@ -73,6 +85,7 @@ fileprivate struct  SheetView: View {
 //                        LinkViewWrapper(linkView: fetchPreview(url: link)).frame(width: 150,height: 50)   
                     }
                     TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad).foregroundColor(Color("ForegroundColor") )
+                        .focused($fieldIsFocused)
                     
                 }
                 .padding(25)
