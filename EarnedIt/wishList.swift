@@ -15,8 +15,8 @@
 import SwiftUI
 import SwiftData
 struct wishList: View {
-    //    @AppStorage("isPresented")
-    @State var isPresented: Bool = false;
+//        @AppStorage("isPresented")
+     @State var isPresented: Bool = false;
     @Environment(\.modelContext) private var context
     @Query private var products: [Products];
     @Query private var defaults: [UserChoices];
@@ -101,27 +101,15 @@ struct wishList: View {
                                             Spacer()
                                             if(defaults[0].points >= product.price){
                                                 Button(action: {
+                                                    item = product;
+
                                                     showAlert = true
                                                     
                                                     
                                                 }) {
-                                                    Text("Redeem").bold().foregroundColor(Color("ForegroundColor"))
+                                                    Text("Redeem").bold().foregroundColor(Color("AccentColor"))
                                                 }
-                                                .alert("Are you sure you want to redeem?", isPresented: $showAlert) {
-                                                    Button("Cancel") {}
-
-                                                    Button("Redeem") {
-                                                        item = product;
-                                                        defaults[0].points =   defaults[0].points - product.price
-                                                        product.isRedeemed = true
-                                                        try? context.save()
-                                                        isPresented = true
-                                                    }
-//                                                message: {
-//                                                    Text("Are you sure you want to redeem?")
-//                                                }
-                                                    
-                                                }
+                                               
                                                 
                                                 
                                                 /*redeemedView(redeemedProduct: product)*/
@@ -154,7 +142,19 @@ struct wishList: View {
             
             
             
-        }.fullScreenCover(isPresented: $isPresented, content: {redeemedView(redeemedProduct: item)})
+        } .alert("Are you sure you want to redeem?", isPresented: $showAlert) {
+            Button("Cancel") {}
+            
+            Button("Redeem") {
+               
+                isPresented.toggle()
+            }
+            //                                                message: {
+            //                                                    Text("Are you sure you want to redeem?")
+            //                                                }
+            
+        }
+        .fullScreenCover(isPresented: $isPresented, content: {redeemedView(redeemedProduct: item)})
         
             .sheet(isPresented: $presentedSheet, content: {
                 wishListSheet().presentationDetents([.height(280)])
