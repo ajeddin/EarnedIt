@@ -105,16 +105,16 @@ struct WavePage: View {
 //                                            }
                                         if(showButton){
                                         if (defaults.isEmpty ){
-                                            Text("Points: 0").bold()                                            .font(.title2).foregroundColor(Color("ForegroundColor"))
+                                            Text("Points: 0").bold()                                            .font(.title3).foregroundColor(Color("ForegroundColor"))
 
 
                                         }else{
                                             Text("Points: \(defaults[0].points)")
-                                            .bold().font(.title2).foregroundColor(Color("ForegroundColor"))}
+                                            .bold().font(.title3).foregroundColor(Color("ForegroundColor"))}
 }//                                                                                .padding(.leading,30)
                                         //                                        .padding(.top,50)
                                     }
-                                    .padding(.leading,20)
+                                    .padding(.leading,30)
                                     Spacer()
                                     if (buttonShwn){
                                         Button(action: {isPresented=true
