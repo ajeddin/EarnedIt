@@ -67,7 +67,8 @@ struct wishListSheet: View{
                         //                    Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
                         PasteButton(payloadType: String.self){ strings in
                             link = strings[0]
-                        }.background(.black)
+                        }
+//                        .background(.black)
                         TextField("Enter Price", value: $price, formatter: Formatter.lucNumberFormat).keyboardType(.numberPad).focused($fieldIsFocused).foregroundColor(Color("ForegroundColor").opacity(0.7))
                         
                     }.onChange(of: link) { oldValue, newValue in
@@ -121,6 +122,8 @@ struct wishListSheet: View{
 
                             }
                             else{
+                                dismiss()
+
                             getRealImage(url: URL(string:link)!) { result in
                                 switch result {
                                 case .success(let response):
@@ -131,7 +134,6 @@ struct wishListSheet: View{
                                             let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: link)
                                             context.insert(product)
                                             try? context.save()
-                                            dismiss()
 
                                         case .failure(let error):
                                             print("Error: \(error)")

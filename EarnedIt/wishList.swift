@@ -66,7 +66,11 @@ struct wishList: View {
                                                             .scaledToFit()
                                                             .frame(width: 80, height: 80)
                                                     } else if phase.error != nil {
-                                                        Text("There was an error loading the image.")
+                                                        Image(systemName: "shippingbox").foregroundColor(Color("AccentColor"))
+                                                            .scaledToFill()
+                                                            .font(.largeTitle)
+                                                        
+                                                            .frame(width: 80, height: 80)
                                                     } else {
                                                         ProgressView()
                                                     }
