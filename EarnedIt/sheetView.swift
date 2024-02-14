@@ -36,13 +36,33 @@ struct wishListSheet: View{
         
         VStack {
             VStack{
+                HStack(alignment: .center, content: {
+                    Text("Add Product").font(.title3).bold().foregroundColor(Color("ForegroundColor"))
+                })
+                Spacer()
                 HStack{
-                    //                        Link("Visit Our Site", destination: URL(string: "https://www.amazon.com")!)
+                    Link(destination: URL(string: "https://www.amazon.com")!, label: {
+//                        Text("Facebook")
+                        Image( "amazonButton")
+                            .resizable()
+                            .frame(width: 200, height: 115)
+                    })
+              
+                    Link(destination: URL(string: "https://www.google.com")!, label: {
+//                        Text("Facebook")
+                        Image( "safariButton")
+                            .resizable()
+                            .frame(width: 200, height: 115)
+                    })
+                }
+                HStack{
+//                                            Link("Visit Our Site", destination: URL(string: "https://www.amazon.com")!)
+                    
                     
                     //                        TextField("Paste Link Here", text: $link).disableAutocorrection(true)
                     //                        Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)))
                     //                        TextField(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +)),text:$link)
-                    Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
+//                    Text(link.prefix(1 + link.split(separator: "/").prefix(4).map { $0.count }.reduce(0, +))).foregroundColor(Color("ForegroundColor") )
                     PasteButton(payloadType: String.self) { strings in
                         link = strings[0]
                     }
@@ -123,12 +143,13 @@ struct wishListSheet: View{
                     
                 }) {
 
-                    Text("Done").foregroundColor(Color("AccentColor"))
+                    Text("Done")
+//                        .foregroundColor(Color("AccentColor")) .
                 }.buttonStyle(.borderedProminent)
   
                 
 //            Spacer()
-        }.padding(.top,20).background(Color.clear)
+        }
       
 
 

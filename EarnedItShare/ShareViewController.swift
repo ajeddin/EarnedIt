@@ -101,11 +101,15 @@ fileprivate struct  SheetView: View {
 
                     print(link)
                     
-                    if ( (link.hasPrefix("https://a.co") || link.hasPrefix("https://www.amazon.com") ) && link.count > 30){
+                    if ( (link.hasPrefix("https://a.co") || link.hasPrefix("https://www.amazon.com") )){
+
                         getRealImage(url: URL(string:link)!) { result in
-                            
+                            print(link)
+
                             switch result {
                             case .success(let response):
+                                print(link)
+
                                 getProductImage(url: URL(string:response)!) { result in
                                     
                                     switch result {
@@ -113,7 +117,7 @@ fileprivate struct  SheetView: View {
                                         let product = Products(imageURL: response.0, productName: response.2.components(separatedBy: " ").prefix(5).joined(separator: " "), price: price, productLink: response.1)
                                         saveItem(product: product)
                                         extentionContext!.completeRequest(returningItems: [])
-                                        
+
                                         
                                     case .failure(let error):
                                         print("Error: \(error)")
