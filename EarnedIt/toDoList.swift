@@ -158,7 +158,7 @@ struct toDoList: View {
                                             Label("", systemImage: task.isFav ? "bookmark.fill" : "bookmark" )
                                             
                                         }
-                                        
+                                        .buttonStyle(.plain)
                                         .tint(.clear)
                                         
                                         
